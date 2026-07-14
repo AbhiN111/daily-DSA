@@ -162,9 +162,104 @@ public class arraysLearn {
         return arr;
     }
 
+    //9.Linear Search
+    public static int LS(int arr[], int n, int num){
+        for (int i =0; i<n; i++){
+            if(arr[i]== num){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //10.Union of two sorted arrays(Brute)
+    public static  ArrayList<Integer> sortedArray(int[] a, int b[]){
+        int n1=a.length;
+        int n2=b.length;
+
+        Set<Integer> st=new TreeSet<>();
+
+        for( int i = 0; i<n1; i++){
+            st.add(a[i]);
+        }
+
+        for(int i=0; i<n2; i++){
+            st.add(b[i]);
+        }
+
+        ArrayList<Integer> temp = new ArrayList<>();
+
+        for (int it : st) {
+            temp.add(it);
+        }
+        return temp;
+    }
+
+    //10.Union of two sorted arrays(Optimal)
+    public static ArrayList<Integer> sortedArray2( int a[], int b[]){
+        int n1 = a.length;
+        int n2 = b.length;
+        int i = 0;
+        int j =0;
+        
+        ArrayList<Integer> unionArr = new ArrayList<>();
+
+        while (i < n1 && j < n2) {
+            if (a[i] <= b[j]) {
+                if (unionArr.size() == 0 || unionArr.get(unionArr.size() - 1) != a[i]) {
+                    unionArr.add(a[i]);
+                }
+                i++;
+            } else {
+                if (unionArr.size() == 0 || unionArr.get(unionArr.size() - 1) != b[j]) {
+                    unionArr.add(b[j]);
+                }
+                j++;
+            }
+        }
+
+        while (j < n2) {
+            if (unionArr.size() == 0 || unionArr.get(unionArr.size() - 1) != b[j]) {
+                unionArr.add(b[j]);
+            }
+            j++;
+        }
+
+        while (i < n1) {
+            if (unionArr.size() == 0 || unionArr.get(unionArr.size() - 1) != a[i]) {
+                unionArr.add(a[i]);
+            }
+            i++;
+        }
+        return unionArr;
+    }
+
+    //11.Find missing number(Optimal 1)
+    public static int missingValue(int [] arr, int n){
+        int sum = (n*(n+1))/2;
+        int s2 =0;
+        for(int i=0; i<n-1;i++){
+            s2 += arr[i];
+        }
+        return sum - s2;
+    }
+
+    //11.Find missing number(Optimal 2)
+    public static int missingValue2(int [] arr, int n){
+        int xor1=0;
+        int xor2=0;
+        for(int i =0; i<n-1; i++){
+            xor2 = xor2 ^ arr[i];
+            xor1 = xor1 ^ (i+1);
+        }
+        xor1 = xor1 ^ n;
+        return xor1 ^ xor2;
+    }
+    
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-
+        // do not use for Q10--------------------------------------------------------------------------------
         System.out.print("Enter the size of the array: ");
         int n = sc.nextInt();
 
@@ -174,9 +269,37 @@ public class arraysLearn {
         for(int i =0; i<n; i++){
             arr[i] = sc.nextInt();
         }
+        //-------------------------------------------------------------------------------------------------
 
-        System.out.println("Enter the number of rotatiion: ");
+        //Q7
+        System.out.println("Enter the number of rotation: ");
         int k =sc.nextInt();
+
+        //Q9
+        System.out.println("Enter the number to find in the array: ");
+        int num= sc.nextInt();
+
+        //Q10(Brute & Optimal) ------------------------------------------------------------------------------------------
+        System.out.print("Enter size of first array: ");
+        int n1 = sc.nextInt();
+
+        int[] a = new int[n1];
+
+        System.out.println("Enter first array:");
+        for (int i = 0; i < n1; i++) {
+            a[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter size of second array: ");
+        int n2 = sc.nextInt();
+
+        int[] b = new int[n2];
+
+        System.out.println("Enter second array:");
+        for (int i = 0; i < n2; i++) {
+            b[i] = sc.nextInt();
+        }
+        //------------------------------------------------------------------------------------------------------
 
         //1.Call this for finding largest element in an array
         int large = arre(arr, n);
@@ -205,7 +328,7 @@ public class arraysLearn {
         } 
         System.out.println(); 
         
-        //6.call to left Rotate Array by One
+        //6.Call to left Rotate Array by One
         rotate(arr, n);
         System.out.print("Array after left rotation: ");
         for (int i = 0; i < n; i++) {
@@ -242,5 +365,31 @@ public class arraysLearn {
             System.out.print(arr[i] + " ");
         }
 
+        //9.Call to Linear Search
+        int index = LS(arr, n, num);
+        if (index != -1) {
+            System.out.println("Element found at index: " + index);
+        } else {
+            System.out.println("Element not found");
+        }
+
+        //10.Call to Union of two sorted arrays(Brute) 
+        ArrayList<Integer> ans = sortedArray(a, b);
+        System.out.println("Union of two arrays:");
+        for (int x : ans) {
+            System.out.print(x + " ");
+        }
+
+        //10.Call to Union of two sorted arrays(Optimal)
+        ArrayList<Integer> anss = sortedArray2(a, b);
+        System.out.println("Union of two arrays:");
+        for (int x : anss) {
+            System.out.print(x + " ");
+        }
+
+        //11.Call to Find missing number(Optimal 1)
+        System.out.println("The missing value is: " + missingValue(arr, n));
+        //11.Call to Find missing number(Optimal 2)
+        System.out.println("The missing value is: " + missingValue2(arr, n));
     }
 }
