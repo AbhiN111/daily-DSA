@@ -255,6 +255,21 @@ public class arraysLearn {
         xor1 = xor1 ^ n;
         return xor1 ^ xor2;
     }
+
+    //12.Maximum Consecutive Ones
+    public static int findMaxConsecutiveOnes(int arr[], int n){
+        int maxi=0;
+        int cnt=0;
+        for(int i =0; i<n; i++){
+            if(arr[i]==1){
+                cnt++;
+                maxi= Math.max(maxi, cnt);
+            } else{
+                cnt=0;
+            }
+        }
+        return maxi;
+    }
     
 
     public static void main(String[] args){
@@ -271,125 +286,128 @@ public class arraysLearn {
         }
         //-------------------------------------------------------------------------------------------------
 
-        //Q7
-        System.out.println("Enter the number of rotation: ");
-        int k =sc.nextInt();
+        // //Q7
+        // System.out.println("Enter the number of rotation: ");
+        // int k =sc.nextInt();
 
-        //Q9
-        System.out.println("Enter the number to find in the array: ");
-        int num= sc.nextInt();
+        // //Q9
+        // System.out.println("Enter the number to find in the array: ");
+        // int num= sc.nextInt();
 
-        //Q10(Brute & Optimal) ------------------------------------------------------------------------------------------
-        System.out.print("Enter size of first array: ");
-        int n1 = sc.nextInt();
+        // //Q10(Brute & Optimal) ------------------------------------------------------------------------------------------
+        // System.out.print("Enter size of first array: ");
+        // int n1 = sc.nextInt();
 
-        int[] a = new int[n1];
+        // int[] a = new int[n1];
 
-        System.out.println("Enter first array:");
-        for (int i = 0; i < n1; i++) {
-            a[i] = sc.nextInt();
-        }
+        // System.out.println("Enter first array:");
+        // for (int i = 0; i < n1; i++) {
+        //     a[i] = sc.nextInt();
+        // }
 
-        System.out.print("Enter size of second array: ");
-        int n2 = sc.nextInt();
+        // System.out.print("Enter size of second array: ");
+        // int n2 = sc.nextInt();
 
-        int[] b = new int[n2];
+        // int[] b = new int[n2];
 
-        System.out.println("Enter second array:");
-        for (int i = 0; i < n2; i++) {
-            b[i] = sc.nextInt();
-        }
-        //------------------------------------------------------------------------------------------------------
+        // System.out.println("Enter second array:");
+        // for (int i = 0; i < n2; i++) {
+        //     b[i] = sc.nextInt();
+        // }
+        // //------------------------------------------------------------------------------------------------------
 
-        //1.Call this for finding largest element in an array
-        int large = arre(arr, n);
-        System.out.println("Largest array in the array is: " + large);
+        // //1.Call this for finding largest element in an array
+        // int large = arre(arr, n);
+        // System.out.println("Largest array in the array is: " + large);
         
-        //2.Call this for finging second largest element in an array
-        int slargest = secondLagre(arr, n);
-        System.out.println("Second largest element in the array is: " + slargest);
+        // //2.Call this for finging second largest element in an array
+        // int slargest = secondLagre(arr, n);
+        // System.out.println("Second largest element in the array is: " + slargest);
 
-        //3.Call this for finging second smallest element in an array
-        int ssmalest = secondSmall(arr, n);
-        System.out.println("Second smallest element in the array is: " + ssmalest);
+        // //3.Call this for finging second smallest element in an array
+        // int ssmalest = secondSmall(arr, n);
+        // System.out.println("Second smallest element in the array is: " + ssmalest);
 
-        //4.Call to the function, is array sorted or not
-        if (isSorted(arr, n)) {
-            System.out.println("Array is Sorted");
-        } else {
-            System.out.println("Array is Not Sorted");
-        }
+        // //4.Call to the function, is array sorted or not
+        // if (isSorted(arr, n)) {
+        //     System.out.println("Array is Sorted");
+        // } else {
+        //     System.out.println("Array is Not Sorted");
+        // }
 
-        //5.Call to remove duplicates from Sorted array 
-        int len = removeDuplicate(arr, n);  
-        System.out.print("Array after removing duplicates: ");
-        for (int i = 0; i < len; i++) {
-            System.out.print(arr[i] + " ");
-        } 
-        System.out.println(); 
+        // //5.Call to remove duplicates from Sorted array 
+        // int len = removeDuplicate(arr, n);  
+        // System.out.print("Array after removing duplicates: ");
+        // for (int i = 0; i < len; i++) {
+        //     System.out.print(arr[i] + " ");
+        // } 
+        // System.out.println(); 
         
-        //6.Call to left Rotate Array by One
-        rotate(arr, n);
-        System.out.print("Array after left rotation: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
+        // //6.Call to left Rotate Array by One
+        // rotate(arr, n);
+        // System.out.print("Array after left rotation: ");
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i] + " ");
+        // }
+        // System.out.println();
 
-        //7.Call to left Rotate Array by K Places(Brute)
-        rotateK(arr, n, k);
-        System.out.print("Array after left rotation: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " "); 
-        } 
-        System.out.println();
+        // //7.Call to left Rotate Array by K Places(Brute)
+        // rotateK(arr, n, k);
+        // System.out.print("Array after left rotation: ");
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i] + " "); 
+        // } 
+        // System.out.println();
 
-        //7.Call to left Rotate Array by K Places(Optimal)
-        leftRotate(arr, n, k);
-        System.out.println("Array after left rotation:");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        // //7.Call to left Rotate Array by K Places(Optimal)
+        // leftRotate(arr, n, k);
+        // System.out.println("Array after left rotation:");
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i] + " ");
+        // }
 
-        //8.Call to Move Zeros to End(Brute)
-        moveZeros(arr, n);
-        System.out.println("Array after moving all zeros to the end: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        // //8.Call to Move Zeros to End(Brute)
+        // moveZeros(arr, n);
+        // System.out.println("Array after moving all zeros to the end: ");
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i] + " ");
+        // }
 
-        //8.Call toMove Zeros to End(Optimal)
-        moveZeros2(arr, n);
-        System.out.println("Array after moving all zeros to the end: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        // //8.Call toMove Zeros to End(Optimal)
+        // moveZeros2(arr, n);
+        // System.out.println("Array after moving all zeros to the end: ");
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i] + " ");
+        // }
 
-        //9.Call to Linear Search
-        int index = LS(arr, n, num);
-        if (index != -1) {
-            System.out.println("Element found at index: " + index);
-        } else {
-            System.out.println("Element not found");
-        }
+        // //9.Call to Linear Search
+        // int index = LS(arr, n, num);
+        // if (index != -1) {
+        //     System.out.println("Element found at index: " + index);
+        // } else {
+        //     System.out.println("Element not found");
+        // }
 
-        //10.Call to Union of two sorted arrays(Brute) 
-        ArrayList<Integer> ans = sortedArray(a, b);
-        System.out.println("Union of two arrays:");
-        for (int x : ans) {
-            System.out.print(x + " ");
-        }
+        // //10.Call to Union of two sorted arrays(Brute) 
+        // ArrayList<Integer> ans = sortedArray(a, b);
+        // System.out.println("Union of two arrays:");
+        // for (int x : ans) {
+        //     System.out.print(x + " ");
+        // }
 
-        //10.Call to Union of two sorted arrays(Optimal)
-        ArrayList<Integer> anss = sortedArray2(a, b);
-        System.out.println("Union of two arrays:");
-        for (int x : anss) {
-            System.out.print(x + " ");
-        }
+        // //10.Call to Union of two sorted arrays(Optimal)
+        // ArrayList<Integer> anss = sortedArray2(a, b);
+        // System.out.println("Union of two arrays:");
+        // for (int x : anss) {
+        //     System.out.print(x + " ");
+        // }
 
-        //11.Call to Find missing number(Optimal 1)
-        System.out.println("The missing value is: " + missingValue(arr, n));
-        //11.Call to Find missing number(Optimal 2)
-        System.out.println("The missing value is: " + missingValue2(arr, n));
+        // //11.Call to Find missing number(Optimal 1)
+        // System.out.println("The missing value is: " + missingValue(arr, n));
+        // //11.Call to Find missing number(Optimal 2)
+        // System.out.println("The missing value is: " + missingValue2(arr, n));
+
+        //12.Call to
+        System.out.println("The maximun number of consecutive ones are: " + findMaxConsecutiveOnes(arr, n));
     }
 }
