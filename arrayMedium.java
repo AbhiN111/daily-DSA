@@ -31,6 +31,44 @@ public class arrayMedium {
         return maxLen;
     }
 
+    //Q3.Longest subarray with given sum K(positives,negatives, zeroes)
+    public static int longestSubarrayWithSumK2(int[] arr, int k, int n) {
+        HashMap<Long, Integer> preSumMap = new HashMap<>();
+        long sum = 0;
+        int maxLen = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+            if (sum == k) {
+                maxLen = Math.max(maxLen, i + 1);
+            }
+            long rem = sum - k;
+            if (preSumMap.containsKey(rem)) {
+                int len = i - preSumMap.get(rem);
+                maxLen = Math.max(maxLen, len);
+            }
+
+            if (!preSumMap.containsKey(sum)) {
+                preSumMap.put(sum, i);
+            }
+        }
+        return maxLen;
+    }
+
+    //Q3.Two Sum
+    public static String twoSum(int arr[], int n, int k){
+        HashMap<Integer,Integer> mpp = new HashMap<>();
+        for(int i =0; i<n; i++){
+            int a = arr[i];
+            int more = k -a;
+            if(mpp.containsKey(more)){
+                return "YES";
+            }
+            mpp.put(a,i);
+        }
+        return "NO";
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
@@ -51,6 +89,9 @@ public class arrayMedium {
         System.out.print("Enter the value of k: ");
         int k =sc.nextInt();
         System.out.println("Longest subarray with given sum is: " + longestSubArrayWithSumK(arr, k, n));        
-
+        //Q3.Longest subarray with given sum K(positives,negatives, zeroes)
+        System.out.println("Longest subarray with given sum is: "+ longestSubarrayWithSumK2(arr, k, n));
+        //Call to two sum
+        System.out.println(twoSum(arr, n, k));
     }
 }
