@@ -227,6 +227,109 @@ public class arrayMedium {
         return maxi;
     }
 
+    //Q8.Stock Buy and Sell
+    public static int maximumPorfit(int arr[], int n){
+        int mini = arr[0];
+        int maxprofit=0;
+        for(int i=0; i<n; i++){
+            int cost = arr[i]- mini;
+            maxprofit= Math.max(maxprofit, cost);
+            mini =Math.min(mini, arr[i]);
+        }
+        return maxprofit;
+    }
+
+    //Q9.Rearrange array elements by sign(pos=neg)
+    public static int[] rearrangeArray(int arr[], int n){
+        int pos=0, neg=1;
+        int ans[]= new int[n];
+        for(int i =0; i<n; i++){
+            if(arr[i]<0){
+                ans[neg]=arr[i];
+                neg +=2;
+            }else{
+                ans[pos] =arr[i];
+                pos+=2;
+            }
+        }
+        return ans;
+    }
+
+    //Q9.Rearrange array elements by sign(pos!=neg)
+    public static int[] alternateNumber(int arr[],int n){
+        ArrayList<Integer> pos = new ArrayList<>();
+        ArrayList<Integer> neg = new ArrayList<>();
+
+        for(int i=0; i<n;i++){
+            if(arr[i]>0){
+                pos.add(arr[i]);
+            }else{
+                neg.add(arr[i]);
+            }
+        }
+
+        if (pos.size() > neg.size()) {
+
+        for (int i = 0; i < neg.size(); i++) {
+            arr[2 * i] = pos.get(i);
+            arr[2 * i + 1] = neg.get(i);
+        }
+        int index = neg.size() * 2;
+        for (int i = neg.size(); i < pos.size(); i++) {
+            arr[index] = pos.get(i);
+            index++;
+        }
+        }else {
+            for (int i = 0; i < pos.size(); i++) {
+                arr[2 * i] = pos.get(i);
+                arr[2 * i + 1] = neg.get(i);
+            }
+            int index = pos.size() * 2;
+            for (int i = pos.size(); i < neg.size(); i++) {
+                arr[index] = neg.get(i);
+                index++;
+            }
+        }
+        return arr;
+    }
+
+    //Q10.Next Permutation
+     public static void nextPermutation(int[] arr, int n){
+        int ind = -1;
+        for(int i=n-2; i>=0; i--){
+            if(arr[i]< arr[i+1]){
+                ind = i;
+                break;
+            }
+        }
+        if(ind==-1){
+            reverse(arr,0,n-1);
+            return;
+        }
+
+        for(int i=n-1; i> ind; i--){
+            if(arr[i]>arr[ind]){
+                int temp = arr[i];
+                arr[i]=arr[ind];
+                arr[ind]=temp;
+
+                break;
+            }
+        }
+        reverse(arr, ind + 1, n - 1);
+    }
+
+    public static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
@@ -262,17 +365,40 @@ public class arrayMedium {
         //}
 
 
-        //Q6.Call to Majority Element-I(better)
-        System.out.println("Majority Element: " + majorityElement(arr, n));
-        //Q6.Call to Majority Element-I(optimal)
-        System.out.println("Majority Element: " + majorityElement2(arr, n));
+        // //Q6.Call to Majority Element-I(better)
+        // System.out.println("Majority Element: " + majorityElement(arr, n));
+        // //Q6.Call to Majority Element-I(optimal)
+        // System.out.println("Majority Element: " + majorityElement2(arr, n));
 
-        //Q7.Kadane's Algorithm(Better)
-        System.out.println("Maximum Subarray Sum = " + maxSubArray(arr, n));
-        //Q7.Kadane's Algorithm(optimal-V1)
-        System.out.println("Maximum Subarray Sum = " + maxSubArray2(arr, n));
-        //Q7.Kadane's Algorithm(optimal-V2)
-        System.out.println("Maximum Subarray Sum = " + maxSubArray3(arr, n));
+        // //Q7.Kadane's Algorithm(Better)
+        // System.out.println("Maximum Subarray Sum = " + maxSubArray(arr, n));
+        // //Q7.Kadane's Algorithm(optimal-V1)
+        // System.out.println("Maximum Subarray Sum = " + maxSubArray2(arr, n));
+        // //Q7.Kadane's Algorithm(optimal-V2)
+        // System.out.println("Maximum Subarray Sum = " + maxSubArray3(arr, n));
 
+        // //Q8.Call to Stock Buy and Sell
+        // System.out.println("Maximum Profit = " + maximumPorfit(arr, n));
+
+        // //Q9.Rearrange array elements by sign(pos=neg)
+        // int[] ans = rearrangeArray(arr, n);        
+        // System.out.println("Rearranged Array:");
+        // for (int i = 0; i < ans.length; i++) {
+        //     System.out.print(ans[i] + " ");
+        // };
+
+        // //Q9.Rearrange array elements by sign(pos=neg)
+        // int[] anss = alternateNumber(arr, n);        
+        // System.out.println("Rearranged Array:");
+        // for (int i = 0; i < anss.length; i++) {
+        //     System.out.print(anss[i] + " ");
+        // };
+
+        //Q10.Cal to Next Permutation
+        nextPermutation(arr, n);
+        System.out.println("Next Permutation:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        };
     }
 }
