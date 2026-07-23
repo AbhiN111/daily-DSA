@@ -343,6 +343,25 @@ public class arrayMedium {
         return ans;
     }
 
+    //Q12.Longest Consecutive Sequence in an Array(Better)
+    public static int longestSuccessiveElements(int arr[], int n){
+        Arrays.sort(arr);
+        int lastSmaller = Integer.MIN_VALUE;
+        int cnt=0;
+        int longest =1;
+        for(int i =0;i<n ;i++){
+            if(arr[i] -1 == lastSmaller){
+                cnt++;
+                lastSmaller=arr[i];
+            }else if(lastSmaller!=arr[i]){
+                cnt=1;
+                lastSmaller=arr[i];
+            }
+            longest = Math.max(longest,cnt);
+        }
+        return longest;
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
@@ -414,11 +433,14 @@ public class arrayMedium {
         //     System.out.print(arr[i] + " ");
         // }
 
-        //Q11.Leaders in an Array
-        ArrayList<Integer> ans = superiorElement(arr, n);
-        System.out.println("Superior Elements:");
-        for (int num : ans) {
-            System.out.print(num + " ");
-        }
+        // //Q11.Call to Leaders in an Array
+        // ArrayList<Integer> ans = superiorElement(arr, n);
+        // System.out.println("Superior Elements:");
+        // for (int num : ans) {
+        //     System.out.print(num + " ");
+        // }
+
+        //Q12.Call to Longest Consecutive Sequence in an Array(Better)
+        System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements(arr, n));
     }
 }
