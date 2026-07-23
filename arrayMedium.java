@@ -362,6 +362,27 @@ public class arrayMedium {
         return longest;
     }
 
+    //Q12.Longest Consecutive Sequence in an Array(Better)
+    public static int longestSuccessiveElements2(int arr[],int n){
+        HashSet<Integer> st = new HashSet<>();
+        int longest=1;
+        for(int i=0;i<n ;i++){
+            st.add(arr[i]);
+        }
+        for (int it : st) {
+            if (!st.contains(it - 1)) {
+                int cnt = 1;
+                int x = it;
+                while (st.contains(x + 1)) {
+                    x = x + 1;
+                    cnt++;
+                }
+                longest = Math.max(longest, cnt);
+            }
+        }
+        return longest;
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
@@ -442,5 +463,7 @@ public class arrayMedium {
 
         //Q12.Call to Longest Consecutive Sequence in an Array(Better)
         System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements(arr, n));
+        //Q12.Call to Longest Consecutive Sequence in an Array(Optimal)
+        System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements2(arr, n));
     }
 }
