@@ -329,6 +329,19 @@ public class arrayMedium {
         }
     }
 
+    //Q11.Leaders in an Array
+    public static ArrayList<Integer> superiorElement(int arr[], int n){
+        ArrayList<Integer> ans = new ArrayList<>();
+        int maxi = Integer.MIN_VALUE;
+        for(int i=n-1;i>=0;i--){
+            if(arr[i]>maxi){
+                ans.add(arr[i]);
+            }
+            maxi=Math.max(maxi,arr[i]);
+        }
+        Collections.sort(ans);
+        return ans;
+    }
 
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
@@ -385,7 +398,7 @@ public class arrayMedium {
         // System.out.println("Rearranged Array:");
         // for (int i = 0; i < ans.length; i++) {
         //     System.out.print(ans[i] + " ");
-        // };
+        // }
 
         // //Q9.Rearrange array elements by sign(pos=neg)
         // int[] anss = alternateNumber(arr, n);        
@@ -394,11 +407,18 @@ public class arrayMedium {
         //     System.out.print(anss[i] + " ");
         // };
 
-        //Q10.Cal to Next Permutation
-        nextPermutation(arr, n);
-        System.out.println("Next Permutation:");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        };
+        // //Q10.al to Next Permutation
+        // nextPermutation(arr, n);
+        // System.out.println("Next Permutation:");
+        // for (int i = 0; i < n; i++) {
+        //     System.out.print(arr[i] + " ");
+        // }
+
+        //Q11.Leaders in an Array
+        ArrayList<Integer> ans = superiorElement(arr, n);
+        System.out.println("Superior Elements:");
+        for (int num : ans) {
+            System.out.print(num + " ");
+        }
     }
 }
