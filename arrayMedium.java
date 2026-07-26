@@ -383,6 +383,7 @@ public class arrayMedium {
         return longest;
     }
 
+    //Q13.Set Matrix Zeroes
     public static int[][] zeroMatrix(int arr[][], int n,int m){
         int row[] = new int[n];
         int col[] = new int[n];
@@ -401,6 +402,46 @@ public class arrayMedium {
                 if(row[i]==1 || col[j]==1){
                     arr[i][j]=0;
                 }
+            }
+        }
+        return arr;
+    }
+
+    //
+    public static int[][] zeroMatrix2(int arr[][], int n, int m) {
+        int col0 = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (arr[i][j] == 0) {
+                    arr[i][0] = 0;
+                    if (j != 0) {
+                        arr[0][j] = 0;
+                    } else {
+                        col0 = 0;
+                    }
+                }
+            }
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+
+                if (arr[i][0] == 0 || arr[0][j] == 0) {
+                    arr[i][j] = 0;
+                }
+
+            }
+        }
+
+        if (arr[0][0] == 0) {
+            for (int j = 0; j < m; j++) {
+                arr[0][j] = 0;
+            }
+        }
+
+        if (col0 == 0) {
+            for (int i = 0; i < n; i++) {
+                arr[i][0] = 0;
             }
         }
         return arr;
@@ -489,8 +530,8 @@ public class arrayMedium {
         // //Q12.Call to Longest Consecutive Sequence in an Array(Optimal)
         // System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements2(arr, n));
 
-        //
-         System.out.print("Enter number of rows: ");
+        //Q13.Call to Set Matrix Zeroes
+        System.out.print("Enter number of rows: ");
         int n = sc.nextInt();
         System.out.print("Enter number of columns: ");
         int m = sc.nextInt();
@@ -501,7 +542,10 @@ public class arrayMedium {
                 matrix[i][j] = sc.nextInt();
             }
         }
+        /*Q13.Call to brute */
         zeroMatrix(matrix, n, m);
+        /*Q13 Call to optimal */
+        zeroMatrix2(matrix, n, m);
         System.out.println("Matrix after setting zeroes:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
