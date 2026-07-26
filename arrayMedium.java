@@ -383,7 +383,7 @@ public class arrayMedium {
         return longest;
     }
 
-    //Q13.Set Matrix Zeroes
+    //Q13.Set Matrix Zeroes(better)
     public static int[][] zeroMatrix(int arr[][], int n,int m){
         int row[] = new int[n];
         int col[] = new int[n];
@@ -407,7 +407,7 @@ public class arrayMedium {
         return arr;
     }
 
-    //
+    //Q13.Set Matrix Zeroes(optimal)
     public static int[][] zeroMatrix2(int arr[][], int n, int m) {
         int col0 = 1;
         for (int i = 0; i < n; i++) {
@@ -445,6 +445,30 @@ public class arrayMedium {
             }
         }
         return arr;
+    }
+
+    //Q14.Rotate matrix by 90 degrees
+    public static void rotateMatrix(int[][] mat, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+
+                int temp = mat[i][j];
+                mat[i][j] = mat[j][i];
+                mat[j][i] = temp;
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            int left = 0;
+            int right = n - 1;
+            while (left < right) {
+                int temp = mat[i][left];
+                mat[i][left] = mat[i][right];
+                mat[i][right] = temp;
+                left++;
+                right--;
+            }
+        }
     }
 
     public static void main(String[] args){
@@ -530,26 +554,44 @@ public class arrayMedium {
         // //Q12.Call to Longest Consecutive Sequence in an Array(Optimal)
         // System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements2(arr, n));
 
-        //Q13.Call to Set Matrix Zeroes
-        System.out.print("Enter number of rows: ");
+        // //Q13.Call to Set Matrix Zeroes
+        // System.out.print("Enter number of rows: ");
+        // int n = sc.nextInt();
+        // System.out.print("Enter number of columns: ");
+        // int m = sc.nextInt();
+        // int[][] matrix = new int[n][m];
+        // System.out.println("Enter matrix elements:");
+        // for (int i = 0; i < n; i++) {
+        //     for (int j = 0; j < m; j++) {
+        //         matrix[i][j] = sc.nextInt();
+        //     }
+        // }
+        // /*Q13.Call to brute */
+        // zeroMatrix(matrix, n, m);
+        // /*Q13 Call to optimal */
+        // zeroMatrix2(matrix, n, m);
+        // System.out.println("Matrix after setting zeroes:");
+        // for (int i = 0; i < n; i++) {
+        //     for (int j = 0; j < m; j++) {
+        //         System.out.print(matrix[i][j] + " ");
+        //     }
+        //     System.out.println();
+
+        //Q14.Call to Rotate matrix by 90 degrees
+        System.out.print("Enter size of matrix: ");
         int n = sc.nextInt();
-        System.out.print("Enter number of columns: ");
-        int m = sc.nextInt();
-        int[][] matrix = new int[n][m];
+        int[][] mat = new int[n][n];
         System.out.println("Enter matrix elements:");
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                matrix[i][j] = sc.nextInt();
+            for (int j = 0; j < n; j++) {
+                mat[i][j] = sc.nextInt();
             }
         }
-        /*Q13.Call to brute */
-        zeroMatrix(matrix, n, m);
-        /*Q13 Call to optimal */
-        zeroMatrix2(matrix, n, m);
-        System.out.println("Matrix after setting zeroes:");
+        rotateMatrix(mat, n);
+        System.out.println("Matrix after 90° rotation:");
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                System.out.print(matrix[i][j] + " ");
+            for (int j = 0; j < n; j++) {
+                System.out.print(mat[i][j] + " ");
             }
             System.out.println();
         }
