@@ -383,18 +383,41 @@ public class arrayMedium {
         return longest;
     }
 
+    public static int[][] zeroMatrix(int arr[][], int n,int m){
+        int row[] = new int[n];
+        int col[] = new int[n];
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(arr[i][j]==0){
+                    row[i]=1;
+                    col[j]=1;
+                }
+            }
+        }
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(row[i]==1 || col[j]==1){
+                    arr[i][j]=0;
+                }
+            }
+        }
+        return arr;
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
-        System.out.print("Enter the size of the array: ");
-        int n = sc.nextInt();
+        // System.out.print("Enter the size of the array: ");
+        // int n = sc.nextInt();
 
-        int arr[] = new int[n];
+        // int arr[] = new int[n];
         
-        System.out.println("Enter the elements of the array:");
-        for(int i =0; i<n; i++){
-            arr[i] = sc.nextInt();
-        }
+        // System.out.println("Enter the elements of the array:");
+        // for(int i =0; i<n; i++){
+        //     arr[i] = sc.nextInt();
+        // }
 
         // //Q1.Call to number that appears once, and other numbers twice.
         // System.out.println("Number that appears once is: " + getSingleElement(arr, n));
@@ -461,9 +484,30 @@ public class arrayMedium {
         //     System.out.print(num + " ");
         // }
 
-        //Q12.Call to Longest Consecutive Sequence in an Array(Better)
-        System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements(arr, n));
-        //Q12.Call to Longest Consecutive Sequence in an Array(Optimal)
-        System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements2(arr, n));
+        // //Q12.Call to Longest Consecutive Sequence in an Array(Better)
+        // System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements(arr, n));
+        // //Q12.Call to Longest Consecutive Sequence in an Array(Optimal)
+        // System.out.println("Length of Longest Consecutive Sequence: " + longestSuccessiveElements2(arr, n));
+
+        //
+         System.out.print("Enter number of rows: ");
+        int n = sc.nextInt();
+        System.out.print("Enter number of columns: ");
+        int m = sc.nextInt();
+        int[][] matrix = new int[n][m];
+        System.out.println("Enter matrix elements:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = sc.nextInt();
+            }
+        }
+        zeroMatrix(matrix, n, m);
+        System.out.println("Matrix after setting zeroes:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
