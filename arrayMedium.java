@@ -517,6 +517,21 @@ public class arrayMedium {
         return cnt;
     }
 
+    //Q16.Count subarrays with given sum(Optimal)
+    public static int subarray2(int arr[], int n, int k){
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+        mpp.put(0, 1);
+        int preSum=0;
+        int cnt=0;
+        for(int i=0; i<n; i++){
+            preSum += arr[i];
+            int remove = preSum-k;
+            cnt += mpp.getOrDefault(remove, 0);
+            mpp.put(preSum, mpp.getOrDefault(preSum, 0) + 1);
+        }
+        return cnt;
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
@@ -660,12 +675,15 @@ public class arrayMedium {
         //     System.out.print(num + " ");
         // }
 
-        //Q16.Call to 
+        //Q16.Call to Count subarrays with given sum(better)
+        // System.out.print("Enter value of k: ");
+        // int k = sc.nextInt();
+        // int ans = countSubarrays(arr, n, k);
+        // System.out.println("Number of subarrays with sum " + k + " = " + ans);
+        //Q16.Call to Count subarrays with given sum(optimal)
         System.out.print("Enter value of k: ");
         int k = sc.nextInt();
+        System.out.println("Number of subarrays with sum " + k + " = " + subarray2(arr, n, k));
 
-        int ans = countSubarrays(arr, n, k);
-
-        System.out.println("Number of subarrays with sum " + k + " = " + ans);
     }
 }
