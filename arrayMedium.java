@@ -502,18 +502,33 @@ public class arrayMedium {
         return ans;
     }
 
+    //Q16.Count subarrays with given sum(better)
+    public static int countSubarrays(int arr[], int n, int k){
+        int cnt=0;
+        for(int i=0; i<n; i++){
+            int sum=0;
+            for(int j =i;j<n;j++){
+                sum+=arr[j];
+                if(sum==k){
+                cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
-        // System.out.print("Enter the size of the array: ");
-        // int n = sc.nextInt();
+        System.out.print("Enter the size of the array: ");
+        int n = sc.nextInt();
 
-        // int arr[] = new int[n];
+        int arr[] = new int[n];
         
-        // System.out.println("Enter the elements of the array:");
-        // for(int i =0; i<n; i++){
-        //     arr[i] = sc.nextInt();
-        // }
+        System.out.println("Enter the elements of the array:");
+        for(int i =0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
 
         // //Q1.Call to number that appears once, and other numbers twice.
         // System.out.println("Number that appears once is: " + getSingleElement(arr, n));
@@ -627,22 +642,30 @@ public class arrayMedium {
         //     System.out.println();
         // }
 
-        //Q15.Call to Print the matrix in spiral manner
-        System.out.print("Enter number of rows: ");
-        int n = sc.nextInt();
-        System.out.print("Enter number of columns: ");
-        int m = sc.nextInt();
-        int[][] arr = new int[n][m];
-        System.out.println("Enter matrix elements:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                arr[i][j] = sc.nextInt();
-            }
-        }
-        List<Integer> ans = spiralMatrix(arr, n, m);
-        System.out.println("Spiral Traversal:");
-        for (int num : ans) {
-            System.out.print(num + " ");
-        }
+        // //Q15.Call to Print the matrix in spiral manner
+        // System.out.print("Enter number of rows: ");
+        // int n = sc.nextInt();
+        // System.out.print("Enter number of columns: ");
+        // int m = sc.nextInt();
+        // int[][] arr = new int[n][m];
+        // System.out.println("Enter matrix elements:");
+        // for (int i = 0; i < n; i++) {
+        //     for (int j = 0; j < m; j++) {
+        //         arr[i][j] = sc.nextInt();
+        //     }
+        // }
+        // List<Integer> ans = spiralMatrix(arr, n, m);
+        // System.out.println("Spiral Traversal:");
+        // for (int num : ans) {
+        //     System.out.print(num + " ");
+        // }
+
+        //Q16.Call to 
+        System.out.print("Enter value of k: ");
+        int k = sc.nextInt();
+
+        int ans = countSubarrays(arr, n, k);
+
+        System.out.println("Number of subarrays with sum " + k + " = " + ans);
     }
 }
