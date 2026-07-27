@@ -471,6 +471,37 @@ public class arrayMedium {
         }
     }
 
+    //Q15.Print the matrix in spiral manner
+    public static List<Integer> spiralMatrix(int arr[][], int n, int m){
+        List<Integer> ans = new ArrayList<>();
+        int left = 0, right= m-1;
+        int top =0, bottom=n-1;
+
+        while(top<=bottom && left<=right){
+            for(int i=left;i<=right;i++){
+                ans.add(arr[top][i]);
+            }
+            top++;
+            for(int i=top;i<=bottom;i++){
+                ans.add(arr[i][right]);
+            }
+            right--;
+            if(top<=bottom){
+                for(int i=right;i>=left;i--){
+                    ans.add(arr[bottom][i]);
+                }
+                bottom--;
+            }
+            if(left<=right){
+                for(int i=bottom;i>=top;i--){
+                    ans.add(arr[i][left]);
+                }
+                left++;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
 
@@ -577,23 +608,41 @@ public class arrayMedium {
         //     }
         //     System.out.println();
 
-        //Q14.Call to Rotate matrix by 90 degrees
-        System.out.print("Enter size of matrix: ");
+        // //Q14.Call to Rotate matrix by 90 degrees
+        // System.out.print("Enter size of matrix: ");
+        // int n = sc.nextInt();
+        // int[][] mat = new int[n][n];
+        // System.out.println("Enter matrix elements:");
+        // for (int i = 0; i < n; i++) {
+        //     for (int j = 0; j < n; j++) {
+        //         mat[i][j] = sc.nextInt();
+        //     }
+        // }
+        // rotateMatrix(mat, n);
+        // System.out.println("Matrix after 90° rotation:");
+        // for (int i = 0; i < n; i++) {
+        //     for (int j = 0; j < n; j++) {
+        //         System.out.print(mat[i][j] + " ");
+        //     }
+        //     System.out.println();
+        // }
+
+        //Q15.Call to Print the matrix in spiral manner
+        System.out.print("Enter number of rows: ");
         int n = sc.nextInt();
-        int[][] mat = new int[n][n];
+        System.out.print("Enter number of columns: ");
+        int m = sc.nextInt();
+        int[][] arr = new int[n][m];
         System.out.println("Enter matrix elements:");
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                mat[i][j] = sc.nextInt();
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = sc.nextInt();
             }
         }
-        rotateMatrix(mat, n);
-        System.out.println("Matrix after 90° rotation:");
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(mat[i][j] + " ");
-            }
-            System.out.println();
+        List<Integer> ans = spiralMatrix(arr, n, m);
+        System.out.println("Spiral Traversal:");
+        for (int num : ans) {
+            System.out.print(num + " ");
         }
     }
 }
