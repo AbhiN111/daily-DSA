@@ -49,6 +49,7 @@ public class arrayHard {
     }
 
 
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -66,7 +67,7 @@ public class arrayHard {
         // int n = sc.nextInt();
         // printRow(n);
 
-        //
+        //Print the complete Pascal Triangle up to N rows
         System.out.print("Enter number of rows: ");
         int n = sc.nextInt();
         ArrayList<ArrayList<Integer>> ans = pascalTriangle(n);
@@ -76,5 +77,6 @@ public class arrayHard {
             }
             System.out.println();
         }
+
     }
 }
