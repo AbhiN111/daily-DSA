@@ -156,6 +156,9 @@ public class arrayHard {
                     temp.add(arr[k]);
 
                     ans.add(temp);
+                    j++;
+                    k--;
+                    
                     while (j < k && arr[j] == arr[j - 1])
                         j++;
 
