@@ -112,6 +112,28 @@ public class arrayHard {
         return ans;
     }
 
+
+    //Q3.3 sum(better)
+    public static List<List<Integer>> threeSum(int arr[], int n){
+        Set<List<Integer>> st= new HashSet<>();
+        for(int i =0;i<n;i++){
+            HashSet<Integer> hashSet = new HashSet<>();
+            for(int j =i+1;j<n;j++){
+                int third = -(arr[i]+arr[j]);
+                if(hashSet.contains(third)){
+                    List<Integer> temp = new ArrayList<>();
+                    temp.add(arr[i]);
+                    temp.add(arr[j]);
+                    temp.add(third);
+                    Collections.sort(temp);
+                    st.add(temp);
+                }
+                hashSet.add(arr[j]);
+            }
+        }
+        return new ArrayList<>(st);
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -150,12 +172,19 @@ public class arrayHard {
         //     System.out.println();
         // }
 
-        //Q2.Call to Majority Element-II(better)
-        List<Integer> ans1 = majorityElement(arr, n);
-        System.out.println("Majority Elements (> n/3 times): " + ans1);
-        //Q2.Call to Majority Element-II(optimal)
-        List<Integer> ans2 = majorityElement(arr, n);
-        System.out.println("Majority Elements (> n/3 times): " + ans2);
+        // //Q2.Call to Majority Element-II(better)
+        // List<Integer> ans1 = majorityElement(arr, n);
+        // System.out.println("Majority Elements (> n/3 times): " + ans1);
+        // //Q2.Call to Majority Element-II(optimal)
+        // List<Integer> ans2 = majorityElement(arr, n);
+        // System.out.println("Majority Elements (> n/3 times): " + ans2);
+
+        //Q3.Call to 3 sum(better)
+        List<List<Integer>> ans = threeSum(arr, n);
+        System.out.println("Triplets are:");
+        for (List<Integer> list : ans) {
+            System.out.println(list);
+        }
 
     }
 }
