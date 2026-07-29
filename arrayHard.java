@@ -48,10 +48,38 @@ public class arrayHard {
         return ans;
     }
 
+    //Q2.Majority Element-II(better)
+    public static List<Integer> majorityElement( int arr[], int n){
+        HashMap<Integer,Integer> map = new HashMap<>();
+        List<Integer> ans = new ArrayList<>();
+        int min=(n/3)+1;
+
+        for(int i =0;i<n; i++){
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+            
+            if (map.get(arr[i]) == min) {
+                ans.add(arr[i]);
+            }
+
+            if(ans.size()==2) break;
+        }
+        Collections.sort(ans);
+        return ans;
+    }
 
 
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
+
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
 
         //Q1.Pascal's Triangle I
         // //Given r and c, test the element at that place
@@ -67,16 +95,20 @@ public class arrayHard {
         // int n = sc.nextInt();
         // printRow(n);
 
-        //Print the complete Pascal Triangle up to N rows
-        System.out.print("Enter number of rows: ");
-        int n = sc.nextInt();
-        ArrayList<ArrayList<Integer>> ans = pascalTriangle(n);
-        for (ArrayList<Integer> row : ans) {
-            for (int num : row) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        }
+        // //Print the complete Pascal Triangle up to N rows
+        // System.out.print("Enter number of rows: ");
+        // int n = sc.nextInt();
+        // ArrayList<ArrayList<Integer>> ans = pascalTriangle(n);
+        // for (ArrayList<Integer> row : ans) {
+        //     for (int num : row) {
+        //         System.out.print(num + " ");
+        //     }
+        //     System.out.println();
+        // }
+
+        //Q2.Call to Majority Element-II(better)
+        List<Integer> anss = majorityElement(arr, n);
+        System.out.println("Majority Elements (> n/3 times): " + anss);
 
     }
 }
