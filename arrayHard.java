@@ -158,7 +158,7 @@ public class arrayHard {
                     ans.add(temp);
                     j++;
                     k--;
-                    
+
                     while (j < k && arr[j] == arr[j - 1])
                         j++;
 
@@ -168,6 +168,32 @@ public class arrayHard {
             }
         }
         return ans;
+    }
+
+    public static List<List<Integer>> fourSum(int arr[], int n, int target) {
+        Set<List<Integer>> st = new HashSet<>();
+        for(int i =0; i<n ;i++){
+            HashSet<Long> hashSet= new HashSet<>();
+            for(int j= i+1;j<n;j++){
+                for(int k =j+1;k<n;k++){
+                    long sum = arr[i]+ arr[j] +arr[k];
+                    long fourth = target - sum;
+
+                    if(hashSet.contains(fourth)){
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(arr[i]);
+                        temp.add(arr[j]);
+                        temp.add(arr[k]);
+                        temp.add((int)fourth);
+
+                        Collections.sort(temp);
+                        st.add(temp);
+                    }
+                    hashSet.add((long) arr[k]);
+                }
+            }
+        }
+        return new ArrayList<>(st);
     }
 
     public static void main(String[] args) {
@@ -221,10 +247,19 @@ public class arrayHard {
         // for (List<Integer> list : ans1) {
         //     System.out.println(list);
         // }
-        //Q3.Call to 3 sum(optimal)
-        List<List<Integer>> ans2 = threeSum(arr, n);
-        System.out.println("Triplets are:");
-        for (List<Integer> list : ans2) {
+        // //Q3.Call to 3 sum(optimal)
+        // List<List<Integer>> ans2 = threeSum(arr, n);
+        // System.out.println("Triplets are:");
+        // for (List<Integer> list : ans2) {
+        //     System.out.println(list);
+        // }
+
+        //Q4.4 sum(better)
+        System.out.print("Enter target: ");
+        int target = sc.nextInt();
+        List<List<Integer>> ans = fourSum(arr,n, target);
+        System.out.println("Quadruplets are:");
+        for (List<Integer> list : ans) {
             System.out.println(list);
         }
 
