@@ -26,7 +26,7 @@ public class arrayHard {
     }
 
     //Q1.Pascal's Triangle I
-    //Print the entire Nth row
+    //Print the complete Pascal Triangle up to N rows
     public static int nCr2(int n, int r) {
         int ans = 1;
         for (int i = 0; i < r; i++) {
@@ -170,11 +170,12 @@ public class arrayHard {
         return ans;
     }
 
+    //Q4 4 Sum(Better)
     public static List<List<Integer>> fourSum(int arr[], int n, int target) {
         Set<List<Integer>> st = new HashSet<>();
         for(int i =0; i<n ;i++){
-            HashSet<Long> hashSet= new HashSet<>();
             for(int j= i+1;j<n;j++){
+                HashSet<Long> hashSet= new HashSet<>();
                 for(int k =j+1;k<n;k++){
                     long sum = arr[i]+ arr[j] +arr[k];
                     long fourth = target - sum;
@@ -194,6 +195,45 @@ public class arrayHard {
             }
         }
         return new ArrayList<>(st);
+    }
+
+    //Q4. 4 Sum(optimal)
+    public static List<List<Integer>> fourSum2(int arr[], int n, int target){
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(arr);
+
+        for(int i=0; i<n;i++){
+            if(i>0 && arr[i] == arr[i-1]) continue;
+            for(int j =i+1; j<n;j++){
+                if(j>i+1 && arr[j] == arr[j-1]) continue;
+                
+                int k = j+1;
+                int l = n-1;
+
+                while(k<l){
+                    long sum =0;
+                    sum+=arr[i];
+                    sum+=arr[j];
+                    sum+=arr[k];
+                    sum+=arr[l];
+
+                    if(sum == target){
+                        ans.add(Arrays.asList(arr[i], arr[j], arr[k], arr[l]));
+                        k++;
+                        l--;
+                        while (k < l && arr[k] == arr[k - 1])
+                            k++;
+                        while (k < l && arr[l] == arr[l + 1])
+                            l--;
+                    }else if (sum <target){
+                        k++;
+                    }else{
+                        l--;
+                    }
+                }
+            }
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -218,7 +258,7 @@ public class arrayHard {
         // long ans = nCr(r - 1, c - 1);
         // System.out.println("Element at (" + r + ", " + c + ") = " + ans); 
 
-        // //Print the entire Nth row
+        // // //Print the entire Nth row
         // System.out.print("Enter row number: ");
         // int n = sc.nextInt();
         // printRow(n);
@@ -254,14 +294,25 @@ public class arrayHard {
         //     System.out.println(list);
         // }
 
-        //Q4.4 sum(better)
+        // //Q4.4 sum(better)
+        // System.out.print("Enter target: ");
+        // int target = sc.nextInt();
+        // List<List<Integer>> ans = fourSum(arr,n, target);
+        // System.out.println("Quadruplets are:");
+        // for (List<Integer> list : ans) {
+        //     System.out.println(list);
+        // }
+        //Q4.4 sum(optimal)
         System.out.print("Enter target: ");
         int target = sc.nextInt();
-        List<List<Integer>> ans = fourSum(arr,n, target);
+        List<List<Integer>> ans = fourSum2(arr, n, target);
         System.out.println("Quadruplets are:");
-        for (List<Integer> list : ans) {
-            System.out.println(list);
+        if (ans.isEmpty()) {
+            System.out.println("No quadruplets found.");
+        } else {
+            for (List<Integer> list : ans) {
+                System.out.println(list);
+            }
         }
-
     }
 }
