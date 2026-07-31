@@ -236,6 +236,29 @@ public class arrayHard {
         return ans;
     }
 
+
+    //Q5.Largest Subarray with Sum 0
+    public static int maxLen(int arr[], int n){
+        HashMap<Integer,Integer> mpp = new HashMap<>();
+        int maxi =0;
+        int sum=0;
+        for(int i =0; i<n; i++){
+            sum += arr[i];
+            if(sum== 0){
+                maxi=i+1;
+            }
+            else{
+                if(mpp.get(sum)!= null){
+                    maxi=Math.max(maxi, i - mpp.get(sum));
+                }
+                else{
+                    mpp.put(sum,i);
+                }
+            }
+        }
+        return maxi;
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -302,17 +325,20 @@ public class arrayHard {
         // for (List<Integer> list : ans) {
         //     System.out.println(list);
         // }
-        //Q4.4 sum(optimal)
-        System.out.print("Enter target: ");
-        int target = sc.nextInt();
-        List<List<Integer>> ans = fourSum2(arr, n, target);
-        System.out.println("Quadruplets are:");
-        if (ans.isEmpty()) {
-            System.out.println("No quadruplets found.");
-        } else {
-            for (List<Integer> list : ans) {
-                System.out.println(list);
-            }
-        }
+        // //Q4.4 sum(optimal)
+        // System.out.print("Enter target: ");
+        // int target = sc.nextInt();
+        // List<List<Integer>> ans = fourSum2(arr, n, target);
+        // System.out.println("Quadruplets are:");
+        // if (ans.isEmpty()) {
+        //     System.out.println("No quadruplets found.");
+        // } else {
+        //     for (List<Integer> list : ans) {
+        //         System.out.println(list);
+        //     }
+        // }
+
+        //Q5.Call to Largest Subarray with Sum 0
+         System.out.println("Length of longest subarray with sum 0 = " + maxLen(arr, n));
     }
 }
