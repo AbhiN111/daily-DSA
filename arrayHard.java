@@ -259,6 +259,19 @@ public class arrayHard {
         return maxi;
     }
 
+    //Q6.Count subarrays with given xor K(better)
+    public static int maxSubArray(int arr[], int n, int k){
+        int cnt=0;
+        for(int i=0; i<n;i++){
+            int xor =0;
+            for(int j =i; j<n; j++){
+                xor = xor ^ arr[j];
+                if(xor == k) cnt++;
+            }
+        }
+        return cnt;
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -338,7 +351,12 @@ public class arrayHard {
         //     }
         // }
 
-        //Q5.Call to Largest Subarray with Sum 0
-         System.out.println("Length of longest subarray with sum 0 = " + maxLen(arr, n));
+        // //Q5.Call to Largest Subarray with Sum 0
+        // System.out.println("Length of longest subarray with sum 0 = " + maxLen(arr, n));
+
+        //Q6.Call to Count subarrays with given xor K(better)
+        System.out.print("Enter value of K: ");
+        int k = sc.nextInt();
+        System.out.println("Number of subarrays with XOR " + k + " = " + maxSubArray(arr, n, k));
     }
 }
