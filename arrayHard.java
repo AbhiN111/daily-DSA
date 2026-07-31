@@ -237,7 +237,7 @@ public class arrayHard {
     }
 
 
-    //Q5.Largest Subarray with Sum 0
+    //Q6.Largest Subarray with Sum 0
     public static int maxLen(int arr[], int n){
         HashMap<Integer,Integer> mpp = new HashMap<>();
         int maxi =0;
@@ -257,6 +257,21 @@ public class arrayHard {
             }
         }
         return maxi;
+    }
+
+    //Q5.Count subarrays with given xor K(optimal)
+    public static int  subarraysWithXorK(int arr[], int n, int k){
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+        int xr=0;
+        int cnt =0;
+        mpp.put(0,1);
+        for(int i =0;i<n; i++){
+            xr = xr ^arr[i];
+            int x = xr^k;
+            cnt += mpp.getOrDefault(x,0 );
+            mpp.put(xr, mpp.getOrDefault(xr, 0) + 1);
+        }
+        return cnt;
     }
 
     //Q6.Count subarrays with given xor K(better)
@@ -358,5 +373,7 @@ public class arrayHard {
         System.out.print("Enter value of K: ");
         int k = sc.nextInt();
         System.out.println("Number of subarrays with XOR " + k + " = " + maxSubArray(arr, n, k));
+        //Q5.Count subarrays with given xor K(optimal)
+        System.out.println("Number of subarrays with XOR " + k + " = " + subarraysWithXorK(arr, n, k));
     }
 }
