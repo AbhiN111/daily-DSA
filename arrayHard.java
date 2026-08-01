@@ -316,6 +316,21 @@ public class arrayHard {
         return ans;
     }
 
+    //Q7.Merge Overlapping Subintervals(optimal)
+    public static int[][] mergeIntervals2(int[][] arr) {
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[0], b[0]));
+        List<int[]> ans = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (ans.isEmpty() || arr[i][0] > ans.get(ans.size() - 1)[1]) {
+                ans.add(new int[]{arr[i][0], arr[i][1]});
+            } else {
+                ans.get(ans.size() - 1)[1] =
+                        Math.max(ans.get(ans.size() - 1)[1], arr[i][1]);
+            }
+        }
+        return ans.toArray(new int[ans.size()][]);
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -419,5 +434,12 @@ public class arrayHard {
         for (List<Integer> interval : ans) {
             System.out.println(interval);
         }
+        //Q7.Call to Merge Overlapping Subintervals(optimal)
+        int[][] ans1 = mergeIntervals2(arr);
+        System.out.println("Merged Intervals:");
+        for (int[] interval : ans1) {
+            System.out.println(Arrays.toString(interval));
+        }
     }
 }
+
