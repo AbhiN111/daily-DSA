@@ -259,6 +259,8 @@ public class arrayHard {
         return maxi;
     }
 
+    
+
     //Q5.Count subarrays with given xor K(optimal)
     public static int  subarraysWithXorK(int arr[], int n, int k){
         HashMap<Integer, Integer> mpp = new HashMap<>();
@@ -287,18 +289,45 @@ public class arrayHard {
         return cnt;
     }
 
+    //Q7.Merge Overlapping Subintervals(brute)
+    public static List<List<Integer>> mergeIntervals(int[][] arr) {
+        int n = arr.length;
+
+        Arrays.sort(arr, (a,b) -> Integer.compare(a[0], b[0]));
+
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i=0; i<n; i++){
+            int start = arr[i][0];
+            int end = arr[i][1];
+
+            if (!ans.isEmpty() && end <= ans.get(ans.size() - 1).get(1))
+                continue;   
+
+            for (int j = i + 1; j < n; j++) {
+
+                if (arr[j][0] <= end) {
+                    end = Math.max(end, arr[j][1]);
+                } else {
+                    break;
+                }
+            }
+            ans.add(Arrays.asList(start, end));
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
-        System.out.print("Enter size of array: ");
-        int n = sc.nextInt();
+        // System.out.print("Enter size of array: ");
+        // int n = sc.nextInt();
 
-        int[] arr = new int[n];
+        // int[] arr = new int[n];
 
-        System.out.println("Enter array elements:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
+        // System.out.println("Enter array elements:");
+        // for (int i = 0; i < n; i++) {
+        //     arr[i] = sc.nextInt();
+        // }
 
         //Q1.Pascal's Triangle I
         // //Given r and c, test the element at that place
@@ -369,11 +398,26 @@ public class arrayHard {
         // //Q5.Call to Largest Subarray with Sum 0
         // System.out.println("Length of longest subarray with sum 0 = " + maxLen(arr, n));
 
-        //Q6.Call to Count subarrays with given xor K(better)
-        System.out.print("Enter value of K: ");
-        int k = sc.nextInt();
-        System.out.println("Number of subarrays with XOR " + k + " = " + maxSubArray(arr, n, k));
-        //Q5.Count subarrays with given xor K(optimal)
-        System.out.println("Number of subarrays with XOR " + k + " = " + subarraysWithXorK(arr, n, k));
+        // //Q6.Call to Count subarrays with given xor K(better)
+        // System.out.print("Enter value of K: ");
+        // int k = sc.nextInt();
+        // System.out.println("Number of subarrays with XOR " + k + " = " + maxSubArray(arr, n, k));
+        // //Q5.Count subarrays with given xor K(optimal)
+        // System.out.println("Number of subarrays with XOR " + k + " = " + subarraysWithXorK(arr, n, k));
+
+        //Q7.Call to Merge Overlapping Subintervals(brute)
+        System.out.print("Enter number of intervals: ");
+        int n = sc.nextInt();
+        int[][] arr = new int[n][2];
+        System.out.println("Enter intervals:");
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = sc.nextInt();
+            arr[i][1] = sc.nextInt();
+        }
+        List<List<Integer>> ans = mergeIntervals(arr);
+        System.out.println("Merged Intervals:");
+        for (List<Integer> interval : ans) {
+            System.out.println(interval);
+        }
     }
 }
