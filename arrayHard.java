@@ -331,6 +331,27 @@ public class arrayHard {
         return ans.toArray(new int[ans.size()][]);
     }
 
+    //Q8.Merge two sorted arrays without extra space(better)
+    public static void merge(int[] arr1, int[] arr2){
+        int n = arr1.length;
+        int m= arr2.length;
+        int left =n-1;
+        int right=0;
+        while(left>=0 && right<m){
+            if(arr1[left] >  arr2[right]){
+                int temp = arr1[left];
+                arr1[left] =arr2[right];
+                arr2[right] =temp;
+                left--;
+                right++;
+            }else{
+                break;
+            }
+        }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);      
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -420,26 +441,47 @@ public class arrayHard {
         // //Q5.Count subarrays with given xor K(optimal)
         // System.out.println("Number of subarrays with XOR " + k + " = " + subarraysWithXorK(arr, n, k));
 
-        //Q7.Call to Merge Overlapping Subintervals(brute)
-        System.out.print("Enter number of intervals: ");
+        // //Q7.Call to Merge Overlapping Subintervals(brute)
+        // System.out.print("Enter number of intervals: ");
+        // int n = sc.nextInt();
+        // int[][] arr = new int[n][2];
+        // System.out.println("Enter intervals:");
+        // for (int i = 0; i < n; i++) {
+        //     arr[i][0] = sc.nextInt();
+        //     arr[i][1] = sc.nextInt();
+        // }
+        // List<List<Integer>> ans = mergeIntervals(arr);
+        // System.out.println("Merged Intervals:");
+        // for (List<Integer> interval : ans) {
+        //     System.out.println(interval);
+        // }
+        // //Q7.Call to Merge Overlapping Subintervals(optimal)
+        // int[][] ans1 = mergeIntervals2(arr);
+        // System.out.println("Merged Intervals:");
+        // for (int[] interval : ans1) {
+        //     System.out.println(Arrays.toString(interval));
+        // }
+
+        //Q8.Call to Merge two sorted arrays without extra space(better)
+        System.out.print("Enter size of first array: ");
         int n = sc.nextInt();
-        int[][] arr = new int[n][2];
-        System.out.println("Enter intervals:");
+        System.out.print("Enter size of second array: ");
+        int m = sc.nextInt();
+        int[] arr1 = new int[n];
+        int[] arr2 = new int[m];
+        System.out.println("Enter elements of first sorted array:");
         for (int i = 0; i < n; i++) {
-            arr[i][0] = sc.nextInt();
-            arr[i][1] = sc.nextInt();
+            arr1[i] = sc.nextInt();
         }
-        List<List<Integer>> ans = mergeIntervals(arr);
-        System.out.println("Merged Intervals:");
-        for (List<Integer> interval : ans) {
-            System.out.println(interval);
+        System.out.println("Enter elements of second sorted array:");
+        for (int i = 0; i < m; i++) {
+            arr2[i] = sc.nextInt();
         }
-        //Q7.Call to Merge Overlapping Subintervals(optimal)
-        int[][] ans1 = mergeIntervals2(arr);
-        System.out.println("Merged Intervals:");
-        for (int[] interval : ans1) {
-            System.out.println(Arrays.toString(interval));
-        }
+        merge(arr1, arr2);
+        System.out.println("First Array after merge:");
+        System.out.println(Arrays.toString(arr1));
+        System.out.println("Second Array after merge:");
+        System.out.println(Arrays.toString(arr2));
     }
 }
 
