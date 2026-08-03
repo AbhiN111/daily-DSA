@@ -481,6 +481,19 @@ public class arrayHard {
         return mS(arr, 0, n-1);
     }
 
+    //Q11.Reverse Pairs(brute)
+    public static int reverseNumbers(int arr[], int n){
+        int cnt =0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if((long)arr[i]>2L*arr[j]){
+                    cnt++;
+                }
+            }
+        }
+        return cnt++;
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -627,9 +640,13 @@ public class arrayHard {
         // System.out.println("Repeating Number = " + ans1[0]);
         // System.out.println("Missing Number = " + ans1[1]);
 
-        //Q10.Call to Count Inversions(brute)
-        System.out.println("Number of inversions = " + numberOfInversions(arr, n));
-        //Q10.Call to Count Inversions(optimal)
-        System.out.println("Number of inversions = " + numberOfInversions2(arr, n));
+        // //Q10.Call to Count Inversions(brute)
+        // System.out.println("Number of inversions = " + numberOfInversions(arr, n));
+        // //Q10.Call to Count Inversions(optimal)
+        // System.out.println("Number of inversions = " + numberOfInversions2(arr, n));
+
+        //Q11.Call to Reverse Pairs(brute)
+        System.out.println("Number of reverse pairs = " + reverseNumbers(arr, n));
+        //Q11.call to Reverse Pairs(optimal)
     }
 }
