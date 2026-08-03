@@ -420,6 +420,19 @@ public class arrayHard {
         return new int[]{(int)x, (int)y};
     }
 
+    //Q10.Count Inversions(better)
+    public static int numberOfInversions(int arr[], int n){
+        int cnt =0;
+        for(int i =0; i<n; i++){
+            for(int j=i+1; j<n;j++){
+                if(arr[i]>arr[j]){
+                    cnt++;
+                }
+            }
+        }
+        return cnt;
+    }
+
     //Q10.Count Inversions(optimal)
     public static int merge(int arr[], int low , int mid, int high){
         ArrayList<Integer> temp = new ArrayList<>();
@@ -464,7 +477,7 @@ public class arrayHard {
         cnt += merge(arr, low, mid, high);
         return cnt;
     }
-    public static int numberOfInversions(int arr[], int n){
+    public static int numberOfInversions2(int arr[], int n){
         return mS(arr, 0, n-1);
     }
 
@@ -614,7 +627,9 @@ public class arrayHard {
         // System.out.println("Repeating Number = " + ans1[0]);
         // System.out.println("Missing Number = " + ans1[1]);
 
+        //Q10.Call to Count Inversions(brute)
+        System.out.println("Number of inversions = " + numberOfInversions(arr, n));
         //Q10.Call to Count Inversions(optimal)
-        System.out.println("Number of inversions = " +numberOfInversions(arr, n));
+        System.out.println("Number of inversions = " + numberOfInversions2(arr, n));
     }
 }
