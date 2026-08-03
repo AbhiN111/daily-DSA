@@ -491,7 +491,7 @@ public class arrayHard {
                 }
             }
         }
-        return cnt++;
+        return cnt;
     }
 
     //Q11.Reverse Pairs
