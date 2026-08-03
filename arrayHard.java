@@ -420,6 +420,54 @@ public class arrayHard {
         return new int[]{(int)x, (int)y};
     }
 
+    //Q10.Count Inversions(optimal)
+    public static int merge(int arr[], int low , int mid, int high){
+        ArrayList<Integer> temp = new ArrayList<>();
+
+        int left =low;
+        int right = mid +1;
+        int cnt=0;
+        while(left<=mid && right<=high){
+            if(arr[left]<=arr[right]){
+                temp.add(arr[left]);
+                left++;
+            }
+            else{
+                temp.add(arr[right]);
+                cnt +=(mid - left+1);
+                right++;
+            }
+        }
+
+        while(left<=mid){
+            temp.add(arr[left]);
+            left++;
+        }
+
+        while(right<=high){
+           temp.add(arr[right]);
+            right++; 
+        }
+
+        for(int i= low; i<= high;i++){
+            arr[i] = temp.get(i-low);
+        }
+        return cnt;
+    }
+    public static int mS(int arr[], int low , int high){
+        int cnt =0;
+        if(low>=high) return cnt;
+        int mid = (low+high)/2;
+
+        cnt += mS(arr, low,  mid);
+        cnt += mS(arr, mid+1, high);
+        cnt += merge(arr, low, mid, high);
+        return cnt;
+    }
+    public static int numberOfInversions(int arr[], int n){
+        return mS(arr, 0, n-1);
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -557,14 +605,16 @@ public class arrayHard {
         // System.out.println("Second Array:");
         // System.out.println(Arrays.toString(arr2));
 
-        //Q9.Call to Find the repeating and missing number(better)
-        int[] ans = findMissingRepeatingNumbers(arr,n);
-        System.out.println("Repeating Number = " + ans[0]);
-        System.out.println("Missing Number = " + ans[1]);
-        //Q9.Call to Find the repeating and missing number(optimal)
-        int[] ans1 = findMissingRepeatingNumbers2(arr, n);
-        System.out.println("Repeating Number = " + ans1[0]);
-        System.out.println("Missing Number = " + ans1[1]);
+        // //Q9.Call to Find the repeating and missing number(better)
+        // int[] ans = findMissingRepeatingNumbers(arr,n);
+        // System.out.println("Repeating Number = " + ans[0]);
+        // System.out.println("Missing Number = " + ans[1]);
+        // //Q9.Call to Find the repeating and missing number(optimal)
+        // int[] ans1 = findMissingRepeatingNumbers2(arr, n);
+        // System.out.println("Repeating Number = " + ans1[0]);
+        // System.out.println("Missing Number = " + ans1[1]);
+
+        //Q10.Call to Count Inversions(optimal)
+        System.out.println("Number of inversions = " +numberOfInversions(arr, n));
     }
 }
-
