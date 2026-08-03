@@ -360,30 +360,6 @@ public class arrayHard {
             arr2[ind2] = temp;
         }
     }
-
-    //Q9.
-    public static int [] findMissingRepeatingNumbers(int arr[], int n){
-        int[] hash = new int[n+1];
-        for(int i=0; i<n; i++){
-            hash[arr[i]]++;
-        }
-        int repeating =-1;
-        int missing =-1;
-        for(int i=1;i<=n;i++){
-            if(hash[i]==2) {
-                repeating=i;
-            }else if(hash[i]==0){
-                missing=i;
-            }
-            if(repeating!=-1 && missing !=-1){
-                break;
-            }
-            
-        }
-        return new int[]{repeating, missing};
-    }
-
-    //Q9.Find the repeating and missing number(better)
     public static void merge2(long[] arr1, long[] arr2, int n, int m){
         int len = (n+m);
         int gap =(len/2) + (len%2);
@@ -404,6 +380,44 @@ public class arrayHard {
             if(gap == 1) break;
             gap=(gap/2) + (gap%2);
         }
+    }
+
+    //Q9.Find the repeating and missing number(better)
+    public static int [] findMissingRepeatingNumbers(int arr[], int n){
+        int[] hash = new int[n+1];
+        for(int i=0; i<n; i++){
+            hash[arr[i]]++;
+        }
+        int repeating =-1;
+        int missing =-1;
+        for(int i=1;i<=n;i++){
+            if(hash[i]==2) {
+                repeating=i;
+            }else if(hash[i]==0){
+                missing=i;
+            }
+            if(repeating!=-1 && missing !=-1){
+                break;
+            }
+        }
+        return new int[]{repeating, missing};
+    }
+
+    //Q9.Find the repeating and missing number(optimal)
+    public static int[] findMissingRepeatingNumbers2(int arr[], int n){
+        long SN = (n * (n+1))/2;
+        long S2N = (n*(n+1)*(2*n+1))/6;
+        long S =0, S2=0;
+        for(int i=0; i<n; i++){
+            S+=arr[i];
+            S2 += ((long)arr[i] *(long)arr[i]);
+        }
+        long val1 = S-SN;
+        long val2 = S2 - S2N;
+        val2= val2/val1;
+        long x =(val1+val2)/2;
+        long y = x- val1;
+        return new int[]{(int)x, (int)y};
     }
 
     public static void main(String[] args) {
@@ -547,6 +561,10 @@ public class arrayHard {
         int[] ans = findMissingRepeatingNumbers(arr,n);
         System.out.println("Repeating Number = " + ans[0]);
         System.out.println("Missing Number = " + ans[1]);
+        //Q9.Call to Find the repeating and missing number(optimal)
+        int[] ans1 = findMissingRepeatingNumbers2(arr, n);
+        System.out.println("Repeating Number = " + ans1[0]);
+        System.out.println("Missing Number = " + ans1[1]);
     }
 }
 
