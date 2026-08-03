@@ -361,6 +361,29 @@ public class arrayHard {
         }
     }
 
+    //Q9.
+    public static int [] findMissingRepeatingNumbers(int arr[], int n){
+        int[] hash = new int[n+1];
+        for(int i=0; i<n; i++){
+            hash[arr[i]]++;
+        }
+        int repeating =-1;
+        int missing =-1;
+        for(int i=1;i<=n;i++){
+            if(hash[i]==2) {
+                repeating=i;
+            }else if(hash[i]==0){
+                missing=i;
+            }
+            if(repeating!=-1 && missing !=-1){
+                break;
+            }
+            
+        }
+        return new int[]{repeating, missing};
+    }
+
+    //Q9.Find the repeating and missing number(better)
     public static void merge2(long[] arr1, long[] arr2, int n, int m){
         int len = (n+m);
         int gap =(len/2) + (len%2);
@@ -386,15 +409,15 @@ public class arrayHard {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
-        // System.out.print("Enter size of array: ");
-        // int n = sc.nextInt();
+        System.out.print("Enter size of array: ");
+        int n = sc.nextInt();
 
-        // int[] arr = new int[n];
+        int[] arr = new int[n];
 
-        // System.out.println("Enter array elements:");
-        // for (int i = 0; i < n; i++) {
-        //     arr[i] = sc.nextInt();
-        // }
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
 
         //Q1.Pascal's Triangle I
         // //Given r and c, test the element at that place
@@ -493,32 +516,37 @@ public class arrayHard {
         //     System.out.println(Arrays.toString(interval));
         // }
 
-        //Q8.Call to Merge two sorted arrays without extra space(better)
-        System.out.print("Enter size of first array: ");
-        int n = sc.nextInt();
-        System.out.print("Enter size of second array: ");
-        int m = sc.nextInt();
-        long[] arr1 = new long[n];
-        long[] arr2 = new long[m];
-        System.out.println("Enter elements of first sorted array:");
-        for (int i = 0; i < n; i++) {
-            arr1[i] = sc.nextInt();
-        }
-        System.out.println("Enter elements of second sorted array:");
-        for (int i = 0; i < m; i++) {
-            arr2[i] = sc.nextInt();
-        }
-        merge(arr1, arr2);
-        System.out.println("First Array after merge:");
-        System.out.println(Arrays.toString(arr1));
-        System.out.println("Second Array after merge:");
-        System.out.println(Arrays.toString(arr2));
-        //Q8.Call to Merge two sorted arrays without extra space(optimal)
-        merge2(arr1, arr2,n,m);
-        System.out.println("First Array:");
-        System.out.println(Arrays.toString(arr1));
-        System.out.println("Second Array:");
-        System.out.println(Arrays.toString(arr2));
+        // //Q8.Call to Merge two sorted arrays without extra space(better)
+        // System.out.print("Enter size of first array: ");
+        // int n = sc.nextInt();
+        // System.out.print("Enter size of second array: ");
+        // int m = sc.nextInt();
+        // long[] arr1 = new long[n];
+        // long[] arr2 = new long[m];
+        // System.out.println("Enter elements of first sorted array:");
+        // for (int i = 0; i < n; i++) {
+        //     arr1[i] = sc.nextInt();
+        // }
+        // System.out.println("Enter elements of second sorted array:");
+        // for (int i = 0; i < m; i++) {
+        //     arr2[i] = sc.nextInt();
+        // }
+        // merge(arr1, arr2);
+        // System.out.println("First Array after merge:");
+        // System.out.println(Arrays.toString(arr1));
+        // System.out.println("Second Array after merge:");
+        // System.out.println(Arrays.toString(arr2));
+        // //Q8.Call to Merge two sorted arrays without extra space(optimal)
+        // merge2(arr1, arr2,n,m);
+        // System.out.println("First Array:");
+        // System.out.println(Arrays.toString(arr1));
+        // System.out.println("Second Array:");
+        // System.out.println(Arrays.toString(arr2));
+
+        //Q9.Call to Find the repeating and missing number(better)
+        int[] ans = findMissingRepeatingNumbers(arr,n);
+        System.out.println("Repeating Number = " + ans[0]);
+        System.out.println("Missing Number = " + ans[1]);
     }
 }
 
