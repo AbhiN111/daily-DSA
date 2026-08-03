@@ -494,6 +494,63 @@ public class arrayHard {
         return cnt++;
     }
 
+    //Q11.Reverse Pairs
+    public static void merge1(int arr[], int low , int mid, int high){
+        ArrayList<Integer> temp = new ArrayList<>();
+
+        int left =low;
+        int right = mid +1;
+        while(left<=mid && right<=high){
+            if(arr[left]<=arr[right]){
+                temp.add(arr[left]);
+                left++;
+            }
+            else{
+                temp.add(arr[right]);
+                right++;
+            }
+        }
+
+        while(left<=mid){
+            temp.add(arr[left]);
+            left++;
+        }
+
+        while(right<=high){
+           temp.add(arr[right]);
+            right++; 
+        }
+
+        for(int i= low; i<= high;i++){
+            arr[i] = temp.get(i-low);
+        }
+    }
+    public static int countPairs(int arr[], int low, int mid, int high){
+        int right = mid+1;
+        int cnt=0;
+        for(int i=low;i<=mid;i++){
+            while(right<=high && arr[i]>2*arr[right]) right++;
+            cnt += (right-(mid+1));
+        }
+        return cnt;
+    }
+
+    public static int mS1(int arr[], int low , int high){
+        int cnt =0;
+        if(low>=high) return cnt;
+        int mid = (low+high)/2;
+
+        cnt +=mS1(arr, low,  mid);
+        cnt +=mS1(arr, mid+1, high);
+        cnt +=countPairs(arr, low, mid ,high);
+        merge1(arr, low, mid, high);
+        return cnt;
+    }
+
+    public static int reverseNumbers2(int arr[], int n){
+        return mS1(arr, 0, n-1); 
+    }
+
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
@@ -646,7 +703,9 @@ public class arrayHard {
         // System.out.println("Number of inversions = " + numberOfInversions2(arr, n));
 
         //Q11.Call to Reverse Pairs(brute)
-        System.out.println("Number of reverse pairs = " + reverseNumbers(arr, n));
+        // System.out.println("Number of reverse pairs = " + reverseNumbers(arr, n));
         //Q11.call to Reverse Pairs(optimal)
+        System.out.println("Number of reverse pairs = " + reverseNumbers2(arr, n));
+
     }
 }
