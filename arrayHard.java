@@ -494,7 +494,7 @@ public class arrayHard {
         return cnt;
     }
 
-    //Q11.Reverse Pairs
+    //Q11.Reverse Pairs(optimal)
     public static void merge1(int arr[], int low , int mid, int high){
         ArrayList<Integer> temp = new ArrayList<>();
 
