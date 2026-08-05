@@ -18,6 +18,26 @@ public class BSon1D {
         return -1;
     }
 
+    //Q1.Search X in sorted array(recursive code)
+     public static int bs(int[] arr, int low, int high, int target) {
+
+        if (low > high)
+            return -1;
+
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == target)
+            return mid;
+        else if (target > arr[mid])
+            return bs(arr, mid + 1, high, target);
+
+        return bs(arr, low, high - 1, target);
+    }
+
+    public static int search1(int[] arr, int n, int target) {
+        return bs(arr, 0, n - 1, target);
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -40,6 +60,13 @@ public class BSon1D {
             System.out.println("Element found at index: " + result);
         } else {
             System.out.println("Element not found.");
+        }
+        //Q1.Call to Search X in sorted array(recursive code)
+        int ans = search1(arr, n, target);
+        if (ans == -1){
+            System.out.println("Element not found.");
+        }else{
+            System.out.println("Element found at index: " + ans);
         }
     }
 }
