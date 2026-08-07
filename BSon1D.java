@@ -38,6 +38,23 @@ public class BSon1D {
         return bs(arr, 0, n - 1, target);
     }
 
+    //Q2.Lower Bound
+    public static int lowerBound(int arr[], int n, int target){
+        int low=0;
+        int high =n-1;
+        int ans =n;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=target){
+                ans= mid;
+                high = mid-1;
+            }else{
+                low= mid+1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -54,19 +71,28 @@ public class BSon1D {
         System.out.print("Enter the target element: ");
         int target= sc.nextInt();
 
-        //Q1.Call to Search X in sorted array(iterative code)
-        int result = search(arr, n, target);
-        if (result != -1) {
-            System.out.println("Element found at index: " + result);
+        // //Q1.Call to Search X in sorted array(iterative code)
+        // int result = search(arr, n, target);
+        // if (result != -1) {
+        //     System.out.println("Element found at index: " + result);
+        // } else {
+        //     System.out.println("Element not found.");
+        // }
+        // //Q1.Call to Search X in sorted array(recursive code)
+        // int ans = search1(arr, n, target);
+        // if (ans == -1){
+        //     System.out.println("Element not found.");
+        // }else{
+        //     System.out.println("Element found at index: " + ans);
+        // }
+
+        //Q2.Call to Lower Bound
+        int ans = lowerBound(arr, n, target);
+        if (ans == n) {
+            System.out.println("Lower Bound does not exist.");
         } else {
-            System.out.println("Element not found.");
-        }
-        //Q1.Call to Search X in sorted array(recursive code)
-        int ans = search1(arr, n, target);
-        if (ans == -1){
-            System.out.println("Element not found.");
-        }else{
-            System.out.println("Element found at index: " + ans);
+            System.out.println("Lower Bound Index: " + ans);
+            System.out.println("Lower Bound Element: " + arr[ans]);
         }
     }
 }
