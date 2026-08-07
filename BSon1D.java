@@ -55,6 +55,24 @@ public class BSon1D {
         return ans;
     }
 
+    //Q3.Upper Bound
+    public static int upperBound(int arr[], int n, int target){
+        int low=0;
+        int high =n-1;
+        int ans =n;
+        while(low<=high){
+            int mid=(low+high)/2;
+            //just comparison operator difference
+            if(arr[mid]>target){
+                ans= mid;
+                high = mid-1;
+            }else{
+                low= mid+1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -86,13 +104,22 @@ public class BSon1D {
         //     System.out.println("Element found at index: " + ans);
         // }
 
-        //Q2.Call to Lower Bound
-        int ans = lowerBound(arr, n, target);
+        // //Q2.Call to Lower Bound
+        // int ans = lowerBound(arr, n, target);
+        // if (ans == n) {
+        //     System.out.println("Lower Bound does not exist.");
+        // } else {
+        //     System.out.println("Lower Bound Index: " + ans);
+        //     System.out.println("Lower Bound Element: " + arr[ans]);
+        // }
+
+        //Q3.Call to Lower Bound
+        int ans = upperBound(arr, n, target);
         if (ans == n) {
-            System.out.println("Lower Bound does not exist.");
+            System.out.println("Upper Bound does not exist.");
         } else {
-            System.out.println("Lower Bound Index: " + ans);
-            System.out.println("Lower Bound Element: " + arr[ans]);
+            System.out.println("Upper Bound Index: " + ans);
+            System.out.println("Upper Bound Element: " + arr[ans]);
         }
     }
 }
