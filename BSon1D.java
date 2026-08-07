@@ -90,6 +90,40 @@ public class BSon1D {
         return ans;
     }
 
+    //Q5.Floor and Ceil in Sorted Array
+    // Floor: Greatest element <= target
+    public static int floor(int arr[], int n, int target){
+        int low=0;
+        int high =n-1;
+        int ans =-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            //just minor change in lower bound comparison operator
+            if(arr[mid]<=target){
+                ans= mid;
+                low= mid+1;
+            }else{
+                high = mid-1;
+            }
+        }
+        return ans;
+    }
+    // Ceil: Smallest element >= target(lower bound)
+    public static int ceil(int arr[], int n, int target) {
+        int low = 0, high = n - 1;
+        int ans = -1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] >= target) {
+                ans = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -139,7 +173,25 @@ public class BSon1D {
         //     System.out.println("Upper Bound Element: " + arr[ans]);
         // }
 
-        //Q4.Search insert position(same as lower bound)
-        System.out.println("Insert Position: " +insertPosition(arr, n, target));
+        // //Q4.Search insert position(same as lower bound)
+        // System.out.println("Insert Position: " +insertPosition(arr, n, target));
+
+        //Q5.Call to Floor and Ceil in Sorted Array
+        //Floor
+        int floorIndex = floor(arr, n, target);
+        if (floorIndex == -1)
+            System.out.println("Floor does not exist.");
+        else {
+            System.out.println("Floor Index: " + floorIndex);
+            System.out.println("Floor Element: " + arr[floorIndex]);
+        }
+        //Ceil
+        int ceilIndex = ceil(arr, n, target);
+        if (ceilIndex == -1)
+            System.out.println("Ceil does not exist.");
+        else {
+            System.out.println("Ceil Index: " + ceilIndex);
+            System.out.println("Ceil Element: " + arr[ceilIndex]);
+        }
     }
 }
