@@ -73,6 +73,23 @@ public class BSon1D {
         return ans;
     }
 
+    //Q4.Search insert position(same as lower bound)
+    public static int insertPosition(int arr[], int n, int target){
+        int low=0;
+        int high =n-1;
+        int ans =n;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=target){
+                ans= mid;
+                high = mid-1;
+            }else{
+                low= mid+1;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -113,13 +130,16 @@ public class BSon1D {
         //     System.out.println("Lower Bound Element: " + arr[ans]);
         // }
 
-        //Q3.Call to Lower Bound
-        int ans = upperBound(arr, n, target);
-        if (ans == n) {
-            System.out.println("Upper Bound does not exist.");
-        } else {
-            System.out.println("Upper Bound Index: " + ans);
-            System.out.println("Upper Bound Element: " + arr[ans]);
-        }
+        // //Q3.Call to Lower Bound
+        // int ans = upperBound(arr, n, target);
+        // if (ans == n) {
+        //     System.out.println("Upper Bound does not exist.");
+        // } else {
+        //     System.out.println("Upper Bound Index: " + ans);
+        //     System.out.println("Upper Bound Element: " + arr[ans]);
+        // }
+
+        //Q4.Search insert position(same as lower bound)
+        System.out.println("Insert Position: " +insertPosition(arr, n, target));
     }
 }
