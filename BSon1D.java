@@ -149,6 +149,50 @@ public class BSon1D {
         return new int[] {lb, upperBound(arr, n, target)-1};
     }
 
+    //Q6.First and last occurrence(code 3)
+    public static int firstOccurance(int arr[], int n, int target){
+        int low=0;
+        int high = n-1;
+        int first =-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                first =mid;
+                high = mid-1;
+            }else if(arr[mid]<target){
+                low= mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return first;
+    }
+    public static int lastOccurance(int arr[], int n, int target){
+        int low=0;
+        int high = n-1;
+        int last =-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                last =mid;
+                low = mid+1;
+            }else if(arr[mid]<target){
+                low= mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return last;
+    }
+    public static int[] firstLast3(int arr[], int n, int target){
+        int first = firstOccurance(arr, n, target);
+        if(first == -1){
+            return new int[]{-1,-1};
+        }
+        int last= lastOccurance(arr, n, target);
+        return new int[]{first,last};
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -227,5 +271,9 @@ public class BSon1D {
         int[] result1 = firstLast2(arr, n, target);
         System.out.println("First occurrence: " + result1[0]);
         System.out.println("Last occurrence: " + result1[1]);
+        //Q6.Call to First and last occurrence(code 2)
+        int[] result2 = firstLast3(arr, n, target);
+        System.out.println("First occurrence: " + result2[0]);
+        System.out.println("Last occurrence: " + result2[1]);
     }
 }
