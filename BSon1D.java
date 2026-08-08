@@ -193,6 +193,16 @@ public class BSon1D {
         return new int[]{first,last};
     }
 
+    //Q7.Count Occurrences in a Sorted Array
+    public static int countOccurance(int arr[], int n, int target){
+        int[] ans = firstLast(arr, n, target);
+
+        if (ans[0] == -1)
+            return 0;
+
+        return ans[1] - ans[0] + 1;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -263,17 +273,22 @@ public class BSon1D {
         //     System.out.println("Ceil Element: " + arr[ceilIndex]);
         // }
 
-        //Q6.Call to First and last occurrence(code 1)
-        int[] result = firstLast(arr, n, target);
-        System.out.println("First occurrence: " + result[0]);
-        System.out.println("Last occurrence: " + result[1]);
-        //Q6.Call to First and last occurrence(code 2)
-        int[] result1 = firstLast2(arr, n, target);
-        System.out.println("First occurrence: " + result1[0]);
-        System.out.println("Last occurrence: " + result1[1]);
-        //Q6.Call to First and last occurrence(code 2)
-        int[] result2 = firstLast3(arr, n, target);
-        System.out.println("First occurrence: " + result2[0]);
-        System.out.println("Last occurrence: " + result2[1]);
+        // //Q6.Call to First and last occurrence(code 1)
+        // int[] result = firstLast(arr, n, target);
+        // System.out.println("First occurrence: " + result[0]);
+        // System.out.println("Last occurrence: " + result[1]);
+        // //Q6.Call to First and last occurrence(code 2)
+        // int[] result1 = firstLast2(arr, n, target);
+        // System.out.println("First occurrence: " + result1[0]);
+        // System.out.println("Last occurrence: " + result1[1]);
+        // //Q6.Call to First and last occurrence(code 2)
+        // int[] result2 = firstLast3(arr, n, target);
+        // System.out.println("First occurrence: " + result2[0]);
+        // System.out.println("Last occurrence: " + result2[1]);
+
+
+        //Q7.Call to Count Occurrences in a Sorted Array
+        int result1 = countOccurance(arr, n, target);
+        System.out.println("Count of " + target + " = " + result1);
     }
 }
