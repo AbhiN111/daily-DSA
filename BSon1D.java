@@ -138,6 +138,16 @@ public class BSon1D {
         }
         return new int[]{first,last};
     }
+    
+    //Q6.First and last occurrence(code 2)
+    public static int[] firstLast2(int arr[], int n, int target){
+        //give call to Q2(lowerBound function) and Q3(upperBound function)
+        int lb = lowerBound(arr, n, target);
+        if(lb==n || arr[lb] != target){
+            return new int[]{-1,-1};
+        } 
+        return new int[] {lb, upperBound(arr, n, target)-1};
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -209,9 +219,13 @@ public class BSon1D {
         //     System.out.println("Ceil Element: " + arr[ceilIndex]);
         // }
 
-        //Q6.Call to First and last occurrence
+        //Q6.Call to First and last occurrence(code 1)
         int[] result = firstLast(arr, n, target);
         System.out.println("First occurrence: " + result[0]);
         System.out.println("Last occurrence: " + result[1]);
+        //Q6.Call to First and last occurrence(code 2)
+        int[] result1 = firstLast2(arr, n, target);
+        System.out.println("First occurrence: " + result1[0]);
+        System.out.println("Last occurrence: " + result1[1]);
     }
 }
