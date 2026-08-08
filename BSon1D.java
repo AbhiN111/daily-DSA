@@ -124,6 +124,21 @@ public class BSon1D {
         return ans;
     }
 
+    //Q6.First and last occurrence(code 1)
+    public static int[] firstLast(int arr[], int n, int target){
+        int first =-1;
+        int last=-1;
+        for(int i =0; i<n; i++){
+            if(arr[i]==target){
+                if(first==-1){
+                    first = i;
+                }
+                last =i;
+            }
+        }
+        return new int[]{first,last};
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -176,22 +191,27 @@ public class BSon1D {
         // //Q4.Search insert position(same as lower bound)
         // System.out.println("Insert Position: " +insertPosition(arr, n, target));
 
-        //Q5.Call to Floor and Ceil in Sorted Array
-        //Floor
-        int floorIndex = floor(arr, n, target);
-        if (floorIndex == -1)
-            System.out.println("Floor does not exist.");
-        else {
-            System.out.println("Floor Index: " + floorIndex);
-            System.out.println("Floor Element: " + arr[floorIndex]);
-        }
-        //Ceil
-        int ceilIndex = ceil(arr, n, target);
-        if (ceilIndex == -1)
-            System.out.println("Ceil does not exist.");
-        else {
-            System.out.println("Ceil Index: " + ceilIndex);
-            System.out.println("Ceil Element: " + arr[ceilIndex]);
-        }
+        // //Q5.Call to Floor and Ceil in Sorted Array
+        // //Floor
+        // int floorIndex = floor(arr, n, target);
+        // if (floorIndex == -1)
+        //     System.out.println("Floor does not exist.");
+        // else {
+        //     System.out.println("Floor Index: " + floorIndex);
+        //     System.out.println("Floor Element: " + arr[floorIndex]);
+        // }
+        // //Ceil
+        // int ceilIndex = ceil(arr, n, target);
+        // if (ceilIndex == -1)
+        //     System.out.println("Ceil does not exist.");
+        // else {
+        //     System.out.println("Ceil Index: " + ceilIndex);
+        //     System.out.println("Ceil Element: " + arr[ceilIndex]);
+        // }
+
+        //Q6.Call to First and last occurrence
+        int[] result = firstLast(arr, n, target);
+        System.out.println("First occurrence: " + result[0]);
+        System.out.println("Last occurrence: " + result[1]);
     }
 }
