@@ -203,6 +203,36 @@ public class BSon1D {
         return ans[1] - ans[0] + 1;
     }
 
+    //Q8.Search in rotated sorted array-I
+    public static int rotateSearch(int arr[], int n, int target){
+        int low=0;
+        int high= n-1;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid]==target) {
+                return mid;
+            }
+            if(arr[low]<=arr[mid]){
+                if(arr[low]<=target && target<arr[mid]){
+                    high= mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+            }
+            else{
+                if (arr[mid] < target && target <= arr[high]) {
+                    low = mid + 1;
+                }
+                else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -287,8 +317,16 @@ public class BSon1D {
         // System.out.println("Last occurrence: " + result2[1]);
 
 
-        //Q7.Call to Count Occurrences in a Sorted Array
-        int result1 = countOccurance(arr, n, target);
-        System.out.println("Count of " + target + " = " + result1);
+        // //Q7.Call to Count Occurrences in a Sorted Array
+        // int result1 = countOccurance(arr, n, target);
+        // System.out.println("Count of " + target + " = " + result1);
+
+        //Q8.Call to Search in rotated sorted array-I
+        int result = rotateSearch(arr, n, target);
+        if (result == -1) {
+            System.out.println("Element not found");
+        } else {
+            System.out.println("Element found at index: " + result);
+        }
     }
 }
