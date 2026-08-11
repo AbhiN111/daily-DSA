@@ -269,6 +269,28 @@ public class BSon1D {
         return -1;
     }
 
+    //Q10.Find minimum in Rotated Sorted Array
+    public static int findMin(int arr[], int n){
+        int low=0;
+        int high=n-1;
+        int ans=Integer.MAX_VALUE;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[low]<=arr[high]){
+                ans=Math.min(ans,arr[low]);
+                break;
+            }
+            if(arr[low]<=arr[mid]){
+                low=mid+1;
+                ans=Math.min(ans,arr[low]);
+            }else{
+                high=mid-1;
+                ans=Math.min(ans, arr[mid]);
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -282,8 +304,8 @@ public class BSon1D {
             arr[i] = sc.nextInt();
         }
 
-        System.out.print("Enter the target element: ");
-        int target= sc.nextInt();
+        // System.out.print("Enter the target element: ");
+        // int target= sc.nextInt();
 
         // //Q1.Call to Search X in sorted array(iterative code)
         // int result = search(arr, n, target);
@@ -357,20 +379,23 @@ public class BSon1D {
         // int result1 = countOccurance(arr, n, target);
         // System.out.println("Count of " + target + " = " + result1);
 
-        //Q8.Call to Search in rotated sorted array-I
-        int result = rotateSearch(arr, n, target);
-        if (result == -1) {
-            System.out.println("Element not found");
-        } else {
-            System.out.println("Element found at index: " + result);
-        }
+        // //Q8.Call to Search in rotated sorted array-I
+        // int result = rotateSearch(arr, n, target);
+        // if (result == -1) {
+        //     System.out.println("Element not found");
+        // } else {
+        //     System.out.println("Element found at index: " + result);
+        // }
 
-        //Q9.Call to Search in rotated sorted array-II
-        int result1 = rotateSearch2(arr, n, target);
-        if (result1 == -1) {
-            System.out.println("Element not found");
-        } else {
-            System.out.println("Element found at index: " + result1);
-        }
+        // //Q9.Call to Search in rotated sorted array-II
+        // int result1 = rotateSearch2(arr, n, target);
+        // if (result1 == -1) {
+        //     System.out.println("Element not found");
+        // } else {
+        //     System.out.println("Element found at index: " + result1);
+        // }
+
+        //Q10.Call to Find minimum in Rotated Sorted Array
+        System.out.print("Minimum element: " +findMin(arr, n));
     }
 }
