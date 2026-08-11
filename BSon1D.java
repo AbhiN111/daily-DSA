@@ -233,6 +233,42 @@ public class BSon1D {
         return -1;
     }
 
+    //Q9.Search in rotated sorted array-II
+    public static int rotateSearch2(int arr[], int n, int target){
+        int low=0;
+        int high= n-1;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid]==target) {
+                return mid;
+            }
+            //just add these lines in above code
+            if(arr[low]==arr[mid] && arr[mid]==arr[high]){
+                low =low+1;
+                high=high-1;
+                continue;
+            }
+            if(arr[low]<=arr[mid]){
+                if(arr[low]<=target && target<arr[mid]){
+                    high= mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+            }
+            else{
+                if (arr[mid] < target && target <= arr[high]) {
+                    low = mid + 1;
+                }
+                else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -327,6 +363,14 @@ public class BSon1D {
             System.out.println("Element not found");
         } else {
             System.out.println("Element found at index: " + result);
+        }
+
+        //Q9.Call to Search in rotated sorted array-II
+        int result1 = rotateSearch2(arr, n, target);
+        if (result1 == -1) {
+            System.out.println("Element not found");
+        } else {
+            System.out.println("Element found at index: " + result1);
         }
     }
 }
