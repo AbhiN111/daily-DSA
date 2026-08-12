@@ -323,6 +323,27 @@ public class BSon1D {
         return index;
     }
 
+    //Q12.Single element in a Sorted Array
+    public static int singleNonDuplicate(int arr[],int n){
+        if(n==1) return arr[0];
+        if(arr[0] != arr[1]) return arr[0];
+        if(arr[n-1] != arr[n-2]) return arr[n-1];
+        int low = 1;
+        int high =n-2;
+        while(low<= high){
+            int mid=(low+high)/2;
+            if(arr[mid] != arr[mid-1] && arr[mid] != arr[mid+1]){
+                return arr[mid];
+            }
+            if((mid%2 ==1 && arr[mid] == arr[mid-1]) || (mid%2 ==0 && arr[mid] == arr[mid+1])){
+                low= mid+1;
+            }else{
+                high =mid-1;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -430,7 +451,10 @@ public class BSon1D {
         // //Q10.Call to Find minimum in Rotated Sorted Array
         // System.out.print("Minimum element: " +findMin(arr, n));
 
-        //Q11.Call to Find out how many times the array is rotated
-        System.out.println("Array rotated " + findRoatation(arr, n) +" times." );
+        // //Q11.Call to Find out how many times the array is rotated
+        // System.out.println("Array rotated " + findRoatation(arr, n) +" times." );
+
+        //Q12.Cal to Single element in a Sorted Array
+        System.out.println("Single element: " + singleNonDuplicate(arr, n));
     }
 }
