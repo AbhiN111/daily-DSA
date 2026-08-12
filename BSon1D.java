@@ -344,6 +344,25 @@ public class BSon1D {
         return -1;
     }
 
+    //Q13.Find peak element
+    public static int findPeak(int arr[] ,int n){
+        if(n==1) return 0;
+        if(arr[0]>arr[1]) return 0;
+        if(arr[n-1]>arr[n-2]) return n-1;
+        int low=1, high=n-2;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>arr[mid+1] &&arr[mid]>arr[mid-1]){
+                return mid;
+            }else if(arr[mid]>arr[mid-1]){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -454,7 +473,10 @@ public class BSon1D {
         // //Q11.Call to Find out how many times the array is rotated
         // System.out.println("Array rotated " + findRoatation(arr, n) +" times." );
 
-        //Q12.Cal to Single element in a Sorted Array
-        System.out.println("Single element: " + singleNonDuplicate(arr, n));
+        // //Q12.Cal to Single element in a Sorted Array
+        // System.out.print("Single element: " + singleNonDuplicate(arr, n));
+
+        //Q13.Call to Find peak element
+        System.out.print("Peak element " + arr[findPeak(arr, n)]);
     }
 }
