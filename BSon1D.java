@@ -291,6 +291,38 @@ public class BSon1D {
         return ans;
     }
 
+    //Q11.Find out how many times the array is rotated
+    public static int findRoatation(int arr[], int n){
+        int low=0;
+        int high=n-1;
+        int ans=Integer.MAX_VALUE;
+        int index =-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[low]<=arr[high]){
+                if(arr[low]<ans){
+                    index=low;
+                    ans =arr[low];
+                }
+                break;
+            }
+            if(arr[low]<=arr[mid]){
+                low=mid+1;
+                if(arr[low]<ans){
+                    index=low;
+                    ans =arr[low];
+                }
+            }else{
+                high=mid-1;
+                if(arr[mid]<ans){
+                    index=mid;
+                    ans =arr[mid];
+                }
+            }
+        }
+        return index;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -395,7 +427,10 @@ public class BSon1D {
         //     System.out.println("Element found at index: " + result1);
         // }
 
-        //Q10.Call to Find minimum in Rotated Sorted Array
-        System.out.print("Minimum element: " +findMin(arr, n));
+        // //Q10.Call to Find minimum in Rotated Sorted Array
+        // System.out.print("Minimum element: " +findMin(arr, n));
+
+        //Q11.Call to Find out how many times the array is rotated
+        System.out.println("Array rotated " + findRoatation(arr, n) +" times." );
     }
 }
