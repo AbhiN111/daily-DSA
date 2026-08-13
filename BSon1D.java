@@ -477,6 +477,6 @@ public class BSon1D {
         // System.out.print("Single element: " + singleNonDuplicate(arr, n));
 
         //Q13.Call to Find peak element
-        System.out.print("Peak element " + arr[findPeak(arr, n)]);
+        System.out.print("Peak elementgit " + arr[findPeak(arr, n)]);
     }
 }
