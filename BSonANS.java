@@ -125,6 +125,34 @@ public class BSonANS {
         }
         return low;
     }
+
+    //Q5.Find the smallest divisor
+    public static int sumByD(int arr[], int n, int div){
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum += Math.ceil((double)arr[i]/(double)div);
+        }
+        return sum;
+    }
+    //Q5 function 2
+    public static int smallestDivisor(int arr[], int n, int limit){
+        int low=1;
+        int high = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            high=Math.max(high,arr[i]);
+        }
+        while(low<=high){
+            int mid = (low + high) / 2;
+
+            if (sumByD(arr,n,mid) <= limit) {
+                high = mid - 1;
+            } 
+            else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
     
 
     public static void main(String[] args) {
@@ -164,12 +192,16 @@ public class BSonANS {
         // int h = sc.nextInt();
         // System.out.println("Minimum eating speed = " + minEatingSpeed(piles, h));
 
-        //Q4.Call to Minimum days to make M bouquets
-        System.out.print("Enter flowers per bouquet: ");
-        int r = sc.nextInt();
-        System.out.print("Enter number of bouquets: ");
-        int b = sc.nextInt();
-        int result = roseGarden(arr, r, b, n);
-        System.out.println("Minimum days required = " + result);
+        // //Q4.Call to Minimum days to make M bouquets
+        // System.out.print("Enter flowers per bouquet: ");
+        // int r = sc.nextInt();
+        // System.out.print("Enter number of bouquets: ");
+        // int b = sc.nextInt();
+        // System.out.println("Minimum days required = " + roseGarden(arr, r, b, n));
+
+        //Q5.Call to Find the smallest divisor
+        System.out.print("Enter limit: ");
+        int limit = sc.nextInt();
+        System.out.println("Smallest divisor = " + smallestDivisor(arr,n, limit));
     }
 }
