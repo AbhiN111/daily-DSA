@@ -154,6 +154,39 @@ public class BSonANS {
         return low;
     }
     
+    //Q6.Capacity to Ship Packages Within D Days
+    public static int findDays(int arr[], int cap, int n){
+        int days=1;
+        int load=0;
+        for(int i =0;i<n;i++){
+            if(arr[i]+load>cap){
+                days++;
+                load=arr[i];
+            }else{
+                load+=arr[i];
+            }
+        }
+        return days;
+    }
+    //Q6 function 2
+    public static int leastWeightCapacity(int[] arr, int d, int n){
+        int low=0;
+        int high=0;
+        for(int i =0;i<n;i++){
+            low=Math.max(low,arr[i]);
+            high+=arr[i];
+        }
+        while(low<=high){
+            int mid=(low+high)/2;
+            int numberOfDays=findDays(arr, mid,n);
+            if(numberOfDays<=d){
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return low;
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -199,9 +232,14 @@ public class BSonANS {
         // int b = sc.nextInt();
         // System.out.println("Minimum days required = " + roseGarden(arr, r, b, n));
 
-        //Q5.Call to Find the smallest divisor
-        System.out.print("Enter limit: ");
-        int limit = sc.nextInt();
-        System.out.println("Smallest divisor = " + smallestDivisor(arr,n, limit));
+        // //Q5.Call to Find the smallest divisor
+        // System.out.print("Enter limit: ");
+        // int limit = sc.nextInt();
+        // System.out.println("Smallest divisor = " + smallestDivisor(arr,n, limit));
+
+        //Q6.all to Capacity to Ship Packages Within D Days
+        System.out.print("Enter number of days: ");
+        int d = sc.nextInt();
+        System.out.println("Minimum capacity required = " + leastWeightCapacity(arr, d, n));
     }
 }
