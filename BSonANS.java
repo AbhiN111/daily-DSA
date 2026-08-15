@@ -188,6 +188,22 @@ public class BSonANS {
         return low;
     }
 
+    //Q7.Kth Missing Positive Number
+    public static int findKthPositive(int arr[], int k,int n){
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            int missing =arr[mid]-(mid+1);
+            if(missing<k){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return low+k;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -237,9 +253,14 @@ public class BSonANS {
         // int limit = sc.nextInt();
         // System.out.println("Smallest divisor = " + smallestDivisor(arr,n, limit));
 
-        //Q6.all to Capacity to Ship Packages Within D Days
-        System.out.print("Enter number of days: ");
-        int d = sc.nextInt();
-        System.out.println("Minimum capacity required = " + leastWeightCapacity(arr, d, n));
+        // //Q6.Call to Capacity to Ship Packages Within D Days
+        // System.out.print("Enter number of days: ");
+        // int d = sc.nextInt();
+        // System.out.println("Minimum capacity required = " + leastWeightCapacity(arr, d, n));
+
+        //Q7.Call to Kth Missing Positive Number
+        System.out.print("Enter k: ");
+        int k = sc.nextInt();
+        System.out.println("Kth missing positive number = " + findKthPositive(arr, k, n));
     }
 }
