@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BSonANS {
@@ -204,6 +205,39 @@ public class BSonANS {
         return low+k;
     }
 
+    //Q8.Aggressive Cows
+    public static boolean canWePlace(int arr[], int dist, int cows, int n){
+        int cntCows=1;
+        int last =arr[0];
+        for(int i=1;i<n;i++){
+            if(arr[i]-last>=dist){
+                cntCows++;
+                last=arr[i];
+            }
+            if (cntCows >= cows) {
+                return true;
+            }
+        }
+        return false;
+    }
+    //Q8 function 2
+    public static int aggresiveCows(int arr[], int k ,int n){
+        Arrays.sort(arr);
+        int low = 1;
+        int high = arr[n - 1] - arr[0];
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (canWePlace(arr, mid, k, n)) {
+                low = mid + 1;
+            } 
+            else {
+                high = mid - 1;
+            }
+        }
+        return high;
+    }
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -258,9 +292,14 @@ public class BSonANS {
         // int d = sc.nextInt();
         // System.out.println("Minimum capacity required = " + leastWeightCapacity(arr, d, n));
 
-        //Q7.Call to Kth Missing Positive Number
-        System.out.print("Enter k: ");
+        // //Q7.Call to Kth Missing Positive Number
+        // System.out.print("Enter k: ");
+        // int k = sc.nextInt();
+        // System.out.println("Kth missing positive number = " + findKthPositive(arr, k, n));
+
+        //Q8.Call to aggresive cows
+        System.out.print("Enter number of cows: ");
         int k = sc.nextInt();
-        System.out.println("Kth missing positive number = " + findKthPositive(arr, k, n));
+        System.out.println("Maximum minimum distance = " +aggresiveCows(arr, k, n));
     }
 }
