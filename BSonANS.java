@@ -237,20 +237,65 @@ public class BSonANS {
         return high;
     }
 
+    //Q9. Median of 2 sorted arrays
+    public static double findMedianSortedArrays(int arr1[], int arr2[]){
+        if (arr2.length < arr1.length) {
+            return findMedianSortedArrays(arr2, arr1);
+        }
+
+        int n1 = arr1.length;
+        int n2 = arr2.length;
+
+        int low = 0;
+        int high = n1;
+
+        while (low <= high) {
+
+            int cut1 = (low + high) / 2;
+            int cut2 = (n1 + n2 + 1) / 2 - cut1;
+
+            int left1 = (cut1 == 0) ? Integer.MIN_VALUE : arr1[cut1 - 1];
+            int left2 = (cut2 == 0) ? Integer.MIN_VALUE : arr2[cut2 - 1];
+
+            int right1 = (cut1 == n1) ? Integer.MAX_VALUE : arr1[cut1];
+            int right2 = (cut2 == n2) ? Integer.MAX_VALUE : arr2[cut2];
+
+            if (left1 <= right2 && left2 <= right1) {
+
+                // Odd total length
+                if ((n1 + n2) % 2 != 0) {
+                    return Math.max(left1, left2);
+                }
+
+                // Even total length
+                return (Math.max(left1, left2)
+                        + Math.min(right1, right2)) / 2.0;
+            }
+
+            else if (left1 > right2) {
+                high = cut1 - 1;
+            }
+
+            else {
+                low = cut1 + 1;
+            }
+        }
+        return 0.0;
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter the size of the array: ");
-        int n = sc.nextInt();
+        // System.out.print("Enter the size of the array: ");
+        // int n = sc.nextInt();
 
-        int[] arr = new int[n];
+        // int[] arr = new int[n];
 
-        System.out.print("Enter the elements in the array: ");
+        // System.out.print("Enter the elements in the array: ");
 
-        for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
-        }
+        // for (int i = 0; i < n; i++) {
+        //     arr[i] = sc.nextInt();
+        
         
         // //Q1.Call to Find square root of a number
         // System.out.println("Square root of " + n + " = " + findSquareRoot(n));
@@ -297,9 +342,32 @@ public class BSonANS {
         // int k = sc.nextInt();
         // System.out.println("Kth missing positive number = " + findKthPositive(arr, k, n));
 
-        //Q8.Call to aggresive cows
-        System.out.print("Enter number of cows: ");
-        int k = sc.nextInt();
-        System.out.println("Maximum minimum distance = " +aggresiveCows(arr, k, n));
+        // //Q8.Call to aggresive cows
+        // System.out.print("Enter number of cows: ");
+        // int k = sc.nextInt();
+        // System.out.println("Maximum minimum distance = " +aggresiveCows(arr, k, n));
+
+        //Q9. Call to Median of 2 sorted arrays
+        System.out.print("Enter size of first array: ");
+        int n1 = sc.nextInt();
+
+        int[] arr1 = new int[n1];
+
+        System.out.println("Enter elements of first sorted array:");
+        for (int i = 0; i < n1; i++) {
+            arr1[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter size of second array: ");
+        int n2 = sc.nextInt();
+
+        int[] arr2 = new int[n2];
+
+        System.out.println("Enter elements of second sorted array:");
+        for (int i = 0; i < n2; i++) {
+            arr2[i] = sc.nextInt();
+        }
+        double result = findMedianSortedArrays(arr1, arr2);
+        System.out.println("Median = " + result);
     }
 }
