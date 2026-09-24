@@ -53,7 +53,7 @@ public class array2D{
     }
 
     //Q2.Search in a 2D Matrix(better)
-    public static boolean findTarget(int n, int m, int arr[][], int target){
+    public static boolean findTarget1(int n, int m, int arr[][], int target){
         int i=0;
         int j=m-1;
         while(i<n && j>=0){
@@ -64,6 +64,27 @@ public class array2D{
                 j--;
             }else{
                 i++;
+            }
+        }
+        return false;
+    }
+
+    //Q2.Search in a 2D Matrix(optimal)
+    public static boolean findTarget2(int n, int m, int arr[][], int target){
+        if(arr.length == 0) return false;
+
+        int low =0;
+        int high = n*m -1;
+
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(arr[mid/m][mid%m]==target){
+                return true;
+            }
+            if(arr[mid/m][mid%m]<target){
+                low= mid+1;
+            }else{
+                high = mid-1;
             }
         }
         return false;
@@ -87,10 +108,12 @@ public class array2D{
         // System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne1(arr, n, m));
         // //Q1.Call to Find row with maximum 1's - approach 2
         // System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne2(arr, n, m));
-
-        //Q2.Cal to Search in a 2D Matrix(better)
+        
         System.out.print("Enter target: ");
         int target = sc.nextInt();
-        System.out.println("Target found: " + findTarget(n, m, arr, target));
+        //Q2.Cal to Search in a 2D Matrix(better)
+        System.out.println("Target found: " + findTarget1(n, m, arr, target));
+        //Q2.Call to Search in a 2D Matrix(optimal)
+        System.out.println("Target found: " + findTarget2(n, m, arr, target));
     }
 }
