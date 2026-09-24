@@ -52,6 +52,23 @@ public class array2D{
         return index;
     }
 
+    //Q2.Search in a 2D Matrix(better)
+    public static boolean findTarget(int n, int m, int arr[][], int target){
+        int i=0;
+        int j=m-1;
+        while(i<n && j>=0){
+            if(arr[i][j] == target){
+                return true;
+            }
+            if(arr[i][j]>target){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter number of rows: ");
@@ -66,9 +83,14 @@ public class array2D{
             }
         }
 
-        //Q1.Call to Find row with maximum 1's - approach 1
-        System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne1(arr, n, m));
-        //Q1.Call to Find row with maximum 1's - approach 2
-        System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne2(arr, n, m));
+        // //Q1.Call to Find row with maximum 1's - approach 1
+        // System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne1(arr, n, m));
+        // //Q1.Call to Find row with maximum 1's - approach 2
+        // System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne2(arr, n, m));
+
+        //Q2.Cal to Search in a 2D Matrix(better)
+        System.out.print("Enter target: ");
+        int target = sc.nextInt();
+        System.out.println("Target found: " + findTarget(n, m, arr, target));
     }
 }
