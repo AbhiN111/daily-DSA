@@ -90,6 +90,24 @@ public class array2D{
         return false;
     }
 
+    //Q3.Search in 2D matrix - II
+    public static int[] findTargetPart2(int n, int m, int arr[][], int target){
+        int row =0;
+        int col = m-1;
+
+        while(row<n && col>=0){
+            if(arr[row][col] == target){
+                return new int[] {row, col};
+            }
+            if(arr[row][col]<target){
+                row++;
+            }else{
+                col--;
+            }
+        }
+        return new int[] {-1,-1};
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter number of rows: ");
@@ -111,9 +129,12 @@ public class array2D{
         
         System.out.print("Enter target: ");
         int target = sc.nextInt();
-        //Q2.Cal to Search in a 2D Matrix(better)
-        System.out.println("Target found: " + findTarget1(n, m, arr, target));
-        //Q2.Call to Search in a 2D Matrix(optimal)
-        System.out.println("Target found: " + findTarget2(n, m, arr, target));
+        // //Q2.Cal to Search in a 2D Matrix(better)
+        // System.out.println("Target found: " + findTarget1(n, m, arr, target));
+        // //Q2.Call to Search in a 2D Matrix(optimal)(use different matrix)
+        // System.out.println("Target found: " + findTarget2(n, m, arr, target));
+
+        //Q3. Call to Search in 2D matrix - II
+        System.out.println("Target found: " +  Arrays.toString(findTargetPart2(n, m, arr, target)));
     }
 }
