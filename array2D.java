@@ -108,6 +108,39 @@ public class array2D{
         return new int[] {-1,-1};
     }
 
+    //Q4.Find Peak Element - II
+    public static int findMaxIndex(int arr[][], int n, int m, int col){
+        int maxVal=-1;
+        int index=-1;
+        for(int i=0; i<n;i++){
+            if(arr[i][col]>maxVal){
+                maxVal=arr[i][col];
+                index=i;
+            }
+        }
+        return index;
+    }
+
+    //Q4. function 2
+    public static int[] findPeakGrid(int arr[][], int n, int m){
+        int low =0;
+        int high = m-1;
+        while(low<=high){
+            int mid= (low+high)/2;
+            int maxRowIndex=findMaxIndex(arr, n, m, mid);
+            int left =mid-1>=0 ? arr[maxRowIndex] [mid -1]: -1;
+            int right = mid + 1 < m ? arr[maxRowIndex][mid + 1]: -1;
+            if(arr[maxRowIndex][mid] >left && arr[maxRowIndex][mid] > right){
+                return new int[] {maxRowIndex, mid};
+            }else if (arr[maxRowIndex][mid] < left) {
+                high =mid -1;
+            }else {
+                low =mid+ 1;
+            }
+        }
+        return new int[] {-1, -1};
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter number of rows: ");
@@ -127,14 +160,19 @@ public class array2D{
         // //Q1.Call to Find row with maximum 1's - approach 2
         // System.out.println("Row with maximum number of 1s: " + rowWithMinimumOne2(arr, n, m));
         
-        System.out.print("Enter target: ");
-        int target = sc.nextInt();
+        // System.out.print("Enter target: ");
+        // int target = sc.nextInt();
         // //Q2.Cal to Search in a 2D Matrix(better)
         // System.out.println("Target found: " + findTarget1(n, m, arr, target));
         // //Q2.Call to Search in a 2D Matrix(optimal)(use different matrix)
         // System.out.println("Target found: " + findTarget2(n, m, arr, target));
 
-        //Q3. Call to Search in 2D matrix - II
-        System.out.println("Target found: " +  Arrays.toString(findTargetPart2(n, m, arr, target)));
+        // //Q3. Call to Search in 2D matrix - II
+        // System.out.println("Target found: " +  Arrays.toString(findTargetPart2(n, m, arr, target)));
+
+        //Q4.Call to Find Peak Element - II
+        int ans[] = findPeakGrid(arr, n, m);
+        System.out.println("Peak element position: ["+ ans[0] + ", " + ans[1] + "]");
+        System.out.println("Peak element: " + arr[ans[0]][ans[1]]);
     }
 }
