@@ -141,6 +141,18 @@ public class array2D{
         return new int[] {-1, -1};
     }
 
+    //Q5.Matrix Median
+    public static int findMedian(int arr[][], int n, int m){
+        ArrayList<Integer> ls= new ArrayList<>();
+        for(int i =0;i<n;i++){
+            for(int j=0;j<m;j++){
+                ls.add(arr[i][j]);
+            }
+        }
+        Collections.sort(ls);
+        return ls.get((m * n) / 2);
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter number of rows: ");
@@ -170,9 +182,12 @@ public class array2D{
         // //Q3. Call to Search in 2D matrix - II
         // System.out.println("Target found: " +  Arrays.toString(findTargetPart2(n, m, arr, target)));
 
-        //Q4.Call to Find Peak Element - II
-        int ans[] = findPeakGrid(arr, n, m);
-        System.out.println("Peak element position: ["+ ans[0] + ", " + ans[1] + "]");
-        System.out.println("Peak element: " + arr[ans[0]][ans[1]]);
+        // //Q4.Call to Find Peak Element - II
+        // int ans[] = findPeakGrid(arr, n, m);
+        // System.out.println("Peak element position: ["+ ans[0] + ", " + ans[1] + "]");
+        // System.out.println("Peak element: " + arr[ans[0]][ans[1]]);
+
+        //Q5.Call to Matrix Median(approach 1)
+        System.out.println("Median: " + findMedian(arr, n, m));
     }
 }
